@@ -45,7 +45,7 @@ Other sections:
 ## The grid
 
 <p align="center">
-  <img src="figures/anatomy.svg" width="696" alt="A grid with row C, column 7 and box 5 in color">
+  <img src="figures/anatomy.svg" width="870" alt="A grid with row C, column 7 and box 5 in color">
 </p>
 
 A Sudoku grid has 81 cells.
@@ -116,7 +116,7 @@ The cell cannot contain these digits.
 When the peers contain eight different digits, only one digit stays for the cell.
 
 <p align="center">
-  <img src="figures/naked_single.svg" width="696" alt="Naked single in cell E5">
+  <img src="figures/naked_single.svg" width="870" alt="Naked single in cell E5">
 </p>
 
 **Example:**
@@ -142,7 +142,7 @@ But if a digit is possible in only one cell of a unit, the digit must be in that
 The other candidates of the cell make this digit not easy to find. Thus the name is "hidden".
 
 <p align="center">
-  <img src="figures/hidden_single.svg" width="696" alt="Hidden single: digit 5 in cell C3">
+  <img src="figures/hidden_single.svg" width="690" alt="Hidden single: digit 5 in cell C3">
 </p>
 
 **Example:**
@@ -172,7 +172,7 @@ In the two conditions, the two digits are in these two cells.
 No other cell of the unit can contain these two digits.
 
 <p align="center">
-  <img src="figures/naked_pair.svg" width="696" alt="Naked pair 2 and 7 in row D">
+  <img src="figures/naked_pair.svg" width="870" alt="Naked pair 2 and 7 in row D">
 </p>
 
 **Example (row D):**
@@ -209,7 +209,7 @@ Thus one cell contains one digit, and the other cell contains the other digit.
 These two cells cannot contain a different digit.
 
 <p align="center">
-  <img src="figures/hidden_pair.svg" width="696" alt="Hidden pair 4 and 6 in row D">
+  <img src="figures/hidden_pair.svg" width="870" alt="Hidden pair 4 and 6 in row D">
 </p>
 
 **Example (row D):**
@@ -245,7 +245,7 @@ No other cell of the unit can contain these digits.
 > In the example, each cell has only two of the three digits.
 
 <p align="center">
-  <img src="figures/naked_triple.svg" width="696" alt="Naked triple 3, 6 and 8 in row D">
+  <img src="figures/naked_triple.svg" width="870" alt="Naked triple 3, 6 and 8 in row D">
 </p>
 
 **Example (row D):**
@@ -308,7 +308,7 @@ The logic is the same as the logic of the naked pair and the naked triple.
 Four cells must contain four different digits, and they have only four possible digits.
 
 <p align="center">
-  <img src="figures/naked_quad.svg" width="696" alt="Naked quad 1, 5, 8 and 9 in row D">
+  <img src="figures/naked_quad.svg" width="870" alt="Naked quad 1, 5, 8 and 9 in row D">
 </p>
 
 **Example (row D):**
@@ -332,7 +332,7 @@ Four cells must contain four different digits, and they have only four possible 
 Remove all the other candidates from these four cells.
 
 <p align="center">
-  <img src="figures/hidden_quad.svg" width="696" alt="Hidden quad 1, 4, 6 and 9 in row D">
+  <img src="figures/hidden_quad.svg" width="870" alt="Hidden quad 1, 4, 6 and 9 in row D">
 </p>
 
 **Example (row D):**
@@ -379,7 +379,7 @@ Thus the digit of that row is in the box.
 The other cells of the row cannot contain the digit.
 
 <p align="center">
-  <img src="figures/pointing.svg" width="696" alt="Pointing: digit 3 in box 1 and row A">
+  <img src="figures/pointing.svg" width="870" alt="Pointing: digit 3 in box 1 and row A">
 </p>
 
 **Example (digit 3):**
@@ -404,7 +404,7 @@ Thus the digit of that box is in the row.
 The other cells of the box cannot contain the digit.
 
 <p align="center">
-  <img src="figures/claiming.svg" width="696" alt="Claiming: digit 7 in row G is only in box 9">
+  <img src="figures/claiming.svg" width="870" alt="Claiming: digit 7 in row G is only in box 9">
 </p>
 
 **Example (digit 7):**
@@ -446,7 +446,7 @@ You can also use columns as base units and rows as cover units.
 Remove the digit from all the other cells of these two columns.
 
 <p align="center">
-  <img src="figures/x_wing.svg" width="696" alt="X-Wing on digit 4 in rows B and G, columns 2 and 7">
+  <img src="figures/x_wing.svg" width="870" alt="X-Wing on digit 4 in rows B and G, columns 2 and 7">
 </p>
 
 **Example (digit 4):**
@@ -469,7 +469,7 @@ The four cells make a rectangle. The two possible conditions make the shape of a
 Remove the digit from all the other cells of these three columns.
 
 <p align="center">
-  <img src="figures/swordfish.svg" width="696" alt="Swordfish on digit 2 in rows B, E and H, columns 1, 5 and 8">
+  <img src="figures/swordfish.svg" width="870" alt="Swordfish on digit 2 in rows B, E and H, columns 1, 5 and 8">
 </p>
 
 **Example (digit 2):**
@@ -492,7 +492,7 @@ Remove the digit from all the other cells of these three columns.
 Remove the digit from all the other cells of these four columns.
 
 <p align="center">
-  <img src="figures/jellyfish.svg" width="696" alt="Jellyfish on digit 6 in rows A, C, F and I, columns 2, 4, 6 and 9">
+  <img src="figures/jellyfish.svg" width="870" alt="Jellyfish on digit 6 in rows A, C, F and I, columns 2, 4, 6 and 9">
 </p>
 
 **Example (digit 6):**
@@ -524,7 +524,7 @@ The two links have their bottom ends in the same row.
 Remove the digit from the cells that are peers of the two top ends.
 
 <p align="center">
-  <img src="figures/skyscraper.svg" width="696" alt="Skyscraper on digit 1 in columns 2 and 6">
+  <img src="figures/skyscraper.svg" width="780" alt="Skyscraper on digit 1 in columns 2 and 6">
 </p>
 
 **Example (digit 1):**
@@ -551,7 +551,7 @@ One end of each link is in the same box.
 Remove the digit from the cell that is a peer of the two other ends.
 
 <p align="center">
-  <img src="figures/kite.svg" width="696" alt="2-String Kite on digit 5 in row B and column 3">
+  <img src="figures/kite.svg" width="870" alt="2-String Kite on digit 5 in row B and column 3">
 </p>
 
 **Example (digit 5):**
@@ -576,7 +576,7 @@ The Skyscraper and the 2-String Kite are two types of Turbot Fish.
 The Turbot Fish is the general type. Its strong links can be in a row, in a column or in a box.
 
 <p align="center">
-  <img src="figures/turbot.svg" width="696" alt="Turbot Fish on digit 7 with column 1 and box 5">
+  <img src="figures/turbot.svg" width="780" alt="Turbot Fish on digit 7 with column 1 and box 5">
 </p>
 
 **Example (digit 7):**
@@ -604,7 +604,7 @@ Remove the digit from the cell that is in the row of this end and in the column 
 The four corner cells of the box have no candidate for the digit. Thus the name is "Empty Rectangle".
 
 <p align="center">
-  <img src="figures/empty_rectangle.svg" width="696" alt="Empty Rectangle on digit 8 in box 5 with a strong link in column 8">
+  <img src="figures/empty_rectangle.svg" width="870" alt="Empty Rectangle on digit 8 in box 5 with a strong link in column 8">
 </p>
 
 **Example (digit 8):**
@@ -633,7 +633,7 @@ A cell that is a peer of all the Z candidates of the wing cannot contain Z.
 Remove Z from the cells that are peers of the two pincers.
 
 <p align="center">
-  <img src="figures/xy_wing.svg" width="696" alt="XY-Wing with pivot E5 and pincers E1 and H5">
+  <img src="figures/xy_wing.svg" width="510" alt="XY-Wing with pivot E5 and pincers E1 and H5">
 </p>
 
 **Example (X = 2, Y = 7, Z = 9):**
@@ -657,7 +657,7 @@ Other name: Y-Wing (in many Sudoku guides).
 Remove Z from the cells that are peers of the pivot and of the two pincers.
 
 <p align="center">
-  <img src="figures/xyz_wing.svg" width="696" alt="XYZ-Wing with pivot E5 and pincers E2 and F6">
+  <img src="figures/xyz_wing.svg" width="510" alt="XYZ-Wing with pivot E5 and pincers E2 and F6">
 </p>
 
 **Example (Z = 3):**
@@ -684,7 +684,7 @@ For three of the digits, all their candidates in the four cells are peers of eac
 Remove the other digit Z from the cells that are peers of all the Z candidates in the four cells.
 
 <p align="center">
-  <img src="figures/wxyz_wing.svg" width="696" alt="WXYZ-Wing with cells E1, E5, E8 and D6">
+  <img src="figures/wxyz_wing.svg" width="870" alt="WXYZ-Wing with cells E1, E5, E8 and D6">
 </p>
 
 **Example (Z = 4):**
@@ -709,7 +709,7 @@ A strong link on X connects a peer of one cell to a peer of the other cell.
 Remove Z from the cells that are peers of the two bivalue cells.
 
 <p align="center">
-  <img src="figures/w_wing.svg" width="696" alt="W-Wing with cells A2 and B5 and a strong link on 1 in row C">
+  <img src="figures/w_wing.svg" width="870" alt="W-Wing with cells A2 and B5 and a strong link on 1 in row C">
 </p>
 
 **Example (X = 1, Z = 5):**
@@ -746,7 +746,7 @@ At the end, the last cell contains Z.
 Thus one of the two ends contains Z.
 
 <p align="center">
-  <img src="figures/xy_chain.svg" width="696" alt="XY-Chain from A1 to D9 on digit 1">
+  <img src="figures/xy_chain.svg" width="870" alt="XY-Chain from A1 to D9 on digit 1">
 </p>
 
 **Example (Z = 1):**
@@ -792,7 +792,7 @@ Write that digit in the cell.
 5. Thus the cell must contain the digit Z.
 
 <p align="center">
-  <img src="figures/bug_plus_one.svg" width="696" alt="BUG+1: cell B6 has the candidates 1, 5 and 9">
+  <img src="figures/bug_plus_one.svg" width="870" alt="BUG+1: cell B6 has the candidates 1, 5 and 9">
 </p>
 
 **Example:**

@@ -32,7 +32,7 @@
 <line x1="468" y1="36" x2="468" y2="108" stroke="#1F2937" stroke-width="2.4"/>
 <line x1="684" y1="36" x2="684" y2="108" stroke="#1F2937" stroke-width="2.4"/>
 <line x1="36" y1="36" x2="684" y2="36" stroke="#1F2937" stroke-width="2.4"/>
-<line x1="36" y1="108" x2="684" y2="108" stroke="#1F2937" stroke-width="2.4"/>
+<line x1="36" y1="108" x2="684" y2="108" stroke="#9AA3B2" stroke-width="1.6" stroke-dasharray="6 4"/>
 <rect x="38" y="38" width="644" height="68" rx="7" fill="none" stroke="#2F6FEB" stroke-width="3.2"/>
 <circle cx="48.0" cy="48.0" r="11.8" fill="#2563EB"/>
 <text x="48.0" y="54.8" text-anchor="middle" font-size="19" font-weight="700" fill="#FFFFFF">1</text>

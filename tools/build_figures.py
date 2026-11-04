@@ -59,10 +59,39 @@ def cand_xy(cell: str, d: int, r0: int, c0: int) -> tuple[float, float]:
     return x, y
 
 
+DISPLAY_CELL = 90   # px per cell on the page (the scale of the hidden triple)
+MAX_DISPLAY = 870   # px, about the width of the GitHub text column
+
+
+def auto_view(ex: dict) -> tuple[int, int, int, int]:
+    """Smallest rectangle that shows every cell of the example and the full
+    extent of every unit that the logic uses (premises, outlines, tints).
+    A unit is never cut: the reader must see all of it."""
+    if "view" in ex:
+        rv0, rv1, cv0, cv1 = ex["view"]
+        return ROWS.index(rv0), ROWS.index(rv1), cv0 - 1, cv1 - 1
+    cells = set(ex.get("givens", {})) | set(ex.get("cands", {})) | set(ex.get("fills", {}))
+    cells |= {c for c, _ in ex.get("marks", {})}
+    for a, b in ex.get("rays", []):
+        cells |= {a, b}
+    for (a, _), (b, _), _k in ex.get("links", []):
+        cells |= {a, b}
+    units = [u for u, _ in ex.get("require", [])] + ex.get("outline", []) + ex.get("tint", [])
+    for u in units:
+        cells |= set(unit_cells(u))
+    rs = [rc(x)[0] for x in cells]
+    cs = [rc(x)[1] for x in cells]
+    return min(rs), max(rs), min(cs), max(cs)
+
+
+def display_width(ex: dict) -> int:
+    r0, r1, c0, c1 = auto_view(ex)
+    W = PAD + (c1 - c0 + 1) * S + 12
+    return min(MAX_DISPLAY, round(W * DISPLAY_CELL / S))
+
+
 def grid_svg(ex: dict) -> str:
-    rv0, rv1, cv0, cv1 = ex.get("view", ("A", "I", 1, 9))
-    r0, r1 = ROWS.index(rv0), ROWS.index(rv1)
-    c0, c1 = cv0 - 1, cv1 - 1
+    r0, r1, c0, c1 = auto_view(ex)
     nr, nc = r1 - r0 + 1, c1 - c0 + 1
     W, H = PAD + nc * S + 12, PAD + nr * S + 12
     o: list[str] = []
@@ -111,15 +140,22 @@ def grid_svg(ex: dict) -> str:
     for r in range(r0, r1 + 2):
         o.append(f'<line x1="{cx(c0)}" y1="{ry(r)}" x2="{cx(c1 + 1)}" y2="{ry(r)}" '
                  f'stroke="#C3C9D3" stroke-width="1"/>')
-    # box lines
+    # box lines: thick only on real box borders; a cut edge is a gray line,
+    # so the reader can see that the grid continues
     for c in range(c0, c1 + 2):
-        if c % 3 == 0 or c in (c0, c1 + 1):
+        if c % 3 == 0:
             o.append(f'<line x1="{cx(c)}" y1="{ry(r0)}" x2="{cx(c)}" y2="{ry(r1 + 1)}" '
                      f'stroke="#1F2937" stroke-width="2.4"/>')
+        elif c in (c0, c1 + 1):
+            o.append(f'<line x1="{cx(c)}" y1="{ry(r0)}" x2="{cx(c)}" y2="{ry(r1 + 1)}" '
+                     f'stroke="#9AA3B2" stroke-width="1.6" stroke-dasharray="6 4"/>')
     for r in range(r0, r1 + 2):
-        if r % 3 == 0 or r in (r0, r1 + 1):
+        if r % 3 == 0:
             o.append(f'<line x1="{cx(c0)}" y1="{ry(r)}" x2="{cx(c1 + 1)}" y2="{ry(r)}" '
                      f'stroke="#1F2937" stroke-width="2.4"/>')
+        elif r in (r0, r1 + 1):
+            o.append(f'<line x1="{cx(c0)}" y1="{ry(r)}" x2="{cx(c1 + 1)}" y2="{ry(r)}" '
+                     f'stroke="#9AA3B2" stroke-width="1.6" stroke-dasharray="6 4"/>')
 
     # rays (hidden single)
     for a, b in ex.get("rays", []):
@@ -329,6 +365,18 @@ def anatomy_svg() -> str:
     return s.replace("</svg>", extra + "</svg>")
 
 
+def sync_readme_widths() -> None:
+    """Set the display width of each grid figure in README.md, so that all
+    grids show at the same scale (DISPLAY_CELL px per cell)."""
+    import re
+    readme = OUT.parent / "README.md"
+    text = readme.read_text(encoding="utf-8")
+    for ex in EX + [ANATOMY]:
+        pat = re.compile(rf'(src="figures/{ex["id"]}\.svg" width=")\d+(")')
+        text = pat.sub(rf"\g<1>{display_width(ex)}\g<2>", text)
+    readme.write_text(text, encoding="utf-8")
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     # 1. prove every example
@@ -346,6 +394,7 @@ def main() -> None:
     # 2. write figures
     for ex in EX:
         (OUT / f"{ex['id']}.svg").write_text(grid_svg(ex), encoding="utf-8")
+    sync_readme_widths()
     for i in range(len(LEVELS)):
         (OUT / f"level{i + 1}.svg").write_text(banner_svg(i), encoding="utf-8")
     (OUT / "cover.svg").write_text(cover_svg(), encoding="utf-8")
