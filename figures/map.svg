@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" width="900" height="430" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif">
+<rect width="900" height="430" rx="18" fill="#FFFFFF"/>
+<rect x="18" y="20" width="170" height="38" rx="19" fill="#16A34A"/>
+<text x="103" y="45" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Level 1: Singles</text>
+<rect x="200" y="23" width="108" height="32" rx="16" fill="#4ADE80" fill-opacity="0.22" stroke="#16A34A" stroke-width="1.5"/>
+<text x="254" y="44" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Naked Single</text>
+<rect x="315.6" y="23" width="115" height="32" rx="16" fill="#4ADE80" fill-opacity="0.22" stroke="#16A34A" stroke-width="1.5"/>
+<text x="373" y="44" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Hidden Single</text>
+<rect x="18" y="70" width="170" height="38" rx="19" fill="#0891B2"/>
+<text x="103" y="95" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Level 2: Subsets</text>
+<rect x="200" y="73" width="93" height="32" rx="16" fill="#22D3EE" fill-opacity="0.22" stroke="#0891B2" stroke-width="1.5"/>
+<text x="246" y="94" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Naked Pair</text>
+<rect x="301.0" y="73" width="100" height="32" rx="16" fill="#22D3EE" fill-opacity="0.22" stroke="#0891B2" stroke-width="1.5"/>
+<text x="351" y="94" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Hidden Pair</text>
+<rect x="409.3" y="73" width="108" height="32" rx="16" fill="#22D3EE" fill-opacity="0.22" stroke="#0891B2" stroke-width="1.5"/>
+<text x="463" y="94" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Naked Triple</text>
+<rect x="524.9" y="73" width="115" height="32" rx="16" fill="#22D3EE" fill-opacity="0.22" stroke="#0891B2" stroke-width="1.5"/>
+<text x="582" y="94" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Hidden Triple</text>
+<rect x="647.8" y="73" width="93" height="32" rx="16" fill="#22D3EE" fill-opacity="0.22" stroke="#0891B2" stroke-width="1.5"/>
+<text x="694" y="94" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Naked Quad</text>
+<rect x="748.8" y="73" width="100" height="32" rx="16" fill="#22D3EE" fill-opacity="0.22" stroke="#0891B2" stroke-width="1.5"/>
+<text x="799" y="94" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Hidden Quad</text>
+<rect x="18" y="120" width="170" height="38" rx="19" fill="#2563EB"/>
+<text x="103" y="145" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Level 3: Intersections</text>
+<rect x="200" y="123" width="78" height="32" rx="16" fill="#60A5FA" fill-opacity="0.22" stroke="#2563EB" stroke-width="1.5"/>
+<text x="239" y="144" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Pointing</text>
+<rect x="286.4" y="123" width="78" height="32" rx="16" fill="#60A5FA" fill-opacity="0.22" stroke="#2563EB" stroke-width="1.5"/>
+<text x="326" y="144" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Claiming</text>
+<rect x="18" y="170" width="170" height="38" rx="19" fill="#4F46E5"/>
+<text x="103" y="195" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Level 4: Fish</text>
+<rect x="200" y="173" width="64" height="32" rx="16" fill="#818CF8" fill-opacity="0.22" stroke="#4F46E5" stroke-width="1.5"/>
+<text x="232" y="194" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">X-Wing</text>
+<rect x="271.8" y="173" width="86" height="32" rx="16" fill="#818CF8" fill-opacity="0.22" stroke="#4F46E5" stroke-width="1.5"/>
+<text x="315" y="194" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Swordfish</text>
+<rect x="365.5" y="173" width="86" height="32" rx="16" fill="#818CF8" fill-opacity="0.22" stroke="#4F46E5" stroke-width="1.5"/>
+<text x="408" y="194" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Jellyfish</text>
+<rect x="18" y="220" width="170" height="38" rx="19" fill="#9333EA"/>
+<text x="103" y="245" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Level 5: Single-digit</text>
+<rect x="200" y="223" width="93" height="32" rx="16" fill="#C084FC" fill-opacity="0.22" stroke="#9333EA" stroke-width="1.5"/>
+<text x="246" y="244" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Skyscraper</text>
+<rect x="301.0" y="223" width="115" height="32" rx="16" fill="#C084FC" fill-opacity="0.22" stroke="#9333EA" stroke-width="1.5"/>
+<text x="358" y="244" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">2-String Kite</text>
+<rect x="423.9" y="223" width="100" height="32" rx="16" fill="#C084FC" fill-opacity="0.22" stroke="#9333EA" stroke-width="1.5"/>
+<text x="474" y="244" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Turbot Fish</text>
+<rect x="532.1999999999999" y="223" width="130" height="32" rx="16" fill="#C084FC" fill-opacity="0.22" stroke="#9333EA" stroke-width="1.5"/>
+<text x="597" y="244" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Empty Rectangle</text>
+<rect x="18" y="270" width="170" height="38" rx="19" fill="#DB2777"/>
+<text x="103" y="295" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Level 6: Wings</text>
+<rect x="200" y="273" width="71" height="32" rx="16" fill="#F472B6" fill-opacity="0.22" stroke="#DB2777" stroke-width="1.5"/>
+<text x="236" y="294" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">XY-Wing</text>
+<rect x="279.1" y="273" width="78" height="32" rx="16" fill="#F472B6" fill-opacity="0.22" stroke="#DB2777" stroke-width="1.5"/>
+<text x="318" y="294" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">XYZ-Wing</text>
+<rect x="365.5" y="273" width="86" height="32" rx="16" fill="#F472B6" fill-opacity="0.22" stroke="#DB2777" stroke-width="1.5"/>
+<text x="408" y="294" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">WXYZ-Wing</text>
+<rect x="459.2" y="273" width="64" height="32" rx="16" fill="#F472B6" fill-opacity="0.22" stroke="#DB2777" stroke-width="1.5"/>
+<text x="491" y="294" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">W-Wing</text>
+<rect x="18" y="320" width="170" height="38" rx="19" fill="#EA580C"/>
+<text x="103" y="345" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Level 7: Chains</text>
+<rect x="200" y="323" width="78" height="32" rx="16" fill="#FB923C" fill-opacity="0.22" stroke="#EA580C" stroke-width="1.5"/>
+<text x="239" y="344" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">XY-Chain</text>
+<rect x="18" y="370" width="170" height="38" rx="19" fill="#DC2626"/>
+<text x="103" y="395" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Level 8: Uniqueness</text>
+<rect x="200" y="373" width="56" height="32" rx="16" fill="#F87171" fill-opacity="0.22" stroke="#DC2626" stroke-width="1.5"/>
+<text x="228" y="394" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">BUG+1</text>
+</svg>

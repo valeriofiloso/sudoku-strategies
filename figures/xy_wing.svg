@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 528 528" width="528" height="528" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif">
+<defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#E11D48"/></marker></defs>
+<rect x="0" y="0" width="528" height="528" rx="14" fill="#FFFFFF"/>
+<text x="57.0" y="20" text-anchor="middle" font-size="13" fill="#6B7280">1</text>
+<text x="111.0" y="20" text-anchor="middle" font-size="13" fill="#6B7280">2</text>
+<text x="165.0" y="20" text-anchor="middle" font-size="13" fill="#6B7280">3</text>
+<text x="219.0" y="20" text-anchor="middle" font-size="13" fill="#6B7280">4</text>
+<text x="273.0" y="20" text-anchor="middle" font-size="13" fill="#6B7280">5</text>
+<text x="327.0" y="20" text-anchor="middle" font-size="13" fill="#6B7280">6</text>
+<text x="381.0" y="20" text-anchor="middle" font-size="13" fill="#6B7280">7</text>
+<text x="435.0" y="20" text-anchor="middle" font-size="13" fill="#6B7280">8</text>
+<text x="489.0" y="20" text-anchor="middle" font-size="13" fill="#6B7280">9</text>
+<text x="16" y="62.0" text-anchor="middle" font-size="13" fill="#6B7280">A</text>
+<text x="16" y="116.0" text-anchor="middle" font-size="13" fill="#6B7280">B</text>
+<text x="16" y="170.0" text-anchor="middle" font-size="13" fill="#6B7280">C</text>
+<text x="16" y="224.0" text-anchor="middle" font-size="13" fill="#6B7280">D</text>
+<text x="16" y="278.0" text-anchor="middle" font-size="13" fill="#6B7280">E</text>
+<text x="16" y="332.0" text-anchor="middle" font-size="13" fill="#6B7280">F</text>
+<text x="16" y="386.0" text-anchor="middle" font-size="13" fill="#6B7280">G</text>
+<text x="16" y="440.0" text-anchor="middle" font-size="13" fill="#6B7280">H</text>
+<text x="16" y="494.0" text-anchor="middle" font-size="13" fill="#6B7280">I</text>
+<rect x="246" y="246" width="54" height="54" fill="#FFC48A"/>
+<rect x="30" y="246" width="54" height="54" fill="#B9F0B1"/>
+<rect x="246" y="408" width="54" height="54" fill="#B9F0B1"/>
+<rect x="30" y="408" width="54" height="54" fill="#FFE27A"/>
+<line x1="30" y1="30" x2="30" y2="516" stroke="#C3C9D3" stroke-width="1"/>
+<line x1="84" y1="30" x2="84" y2="516" stroke="#C3C9D3" stroke-width="1"/>
+<line x1="138" y1="30" x2="138" y2="516" stroke="#C3C9D3" stroke-width="1"/>
+<line x1="192" y1="30" x2="192" y2="516" stroke="#C3C9D3" stroke-width="1"/>
+<line x1="246" y1="30" x2="246" y2="516" stroke="#C3C9D3" stroke-width="1"/>
+<line x1="300" y1="30" x2="300" y2="516" stroke="#C3C9D3" stroke-width="1"/>
+<line x1="354" y1="30" x2="354" y2="516" stroke="#C3C9D3" stroke-width="1"/>
+<line x1="408" y1="30" x2="408" y2="516" stroke="#C3C9D3" stroke-width="1"/>
+<line x1="462" y1="30" x2="462" y2="516" stroke="#C3C9D3" stroke-width="1"/>
+<line x1="516" y1="30" x2="516" y2="516" stroke="#C3C9D3" stroke-width="1"/>
+<line x1="30" y1="30" x2="516" y2="30" stroke="#C3C9D3" stroke-width="1"/>
+<line x1="30" y1="84" x2="516" y2="84" stroke="#C3C9D3" stroke-width="1"/>
+<line x1="30" y1="138" x2="516" y2="138" stroke="#C3C9D3" stroke-width="1"/>
+<line x1="30" y1="192" x2="516" y2="192" stroke="#C3C9D3" stroke-width="1"/>
+<line x1="30" y1="246" x2="516" y2="246" stroke="#C3C9D3" stroke-width="1"/>
+<line x1="30" y1="300" x2="516" y2="300" stroke="#C3C9D3" stroke-width="1"/>
+<line x1="30" y1="354" x2="516" y2="354" stroke="#C3C9D3" stroke-width="1"/>
+<line x1="30" y1="408" x2="516" y2="408" stroke="#C3C9D3" stroke-width="1"/>
+<line x1="30" y1="462" x2="516" y2="462" stroke="#C3C9D3" stroke-width="1"/>
+<line x1="30" y1="516" x2="516" y2="516" stroke="#C3C9D3" stroke-width="1"/>
+<line x1="30" y1="30" x2="30" y2="516" stroke="#1F2937" stroke-width="2.4"/>
+<line x1="192" y1="30" x2="192" y2="516" stroke="#1F2937" stroke-width="2.4"/>
+<line x1="354" y1="30" x2="354" y2="516" stroke="#1F2937" stroke-width="2.4"/>
+<line x1="516" y1="30" x2="516" y2="516" stroke="#1F2937" stroke-width="2.4"/>
+<line x1="30" y1="30" x2="516" y2="30" stroke="#1F2937" stroke-width="2.4"/>
+<line x1="30" y1="192" x2="516" y2="192" stroke="#1F2937" stroke-width="2.4"/>
+<line x1="30" y1="354" x2="516" y2="354" stroke="#1F2937" stroke-width="2.4"/>
+<line x1="30" y1="516" x2="516" y2="516" stroke="#1F2937" stroke-width="2.4"/>
+<line x1="273.0" y1="255.0" x2="57.0" y2="255.0" stroke="#7C3AED" stroke-width="3" stroke-linecap="round" stroke-opacity="0.85" stroke-dasharray="7 6"/>
+<line x1="255.0" y1="291.0" x2="255.0" y2="453.0" stroke="#7C3AED" stroke-width="3" stroke-linecap="round" stroke-opacity="0.85" stroke-dasharray="7 6"/>
+<circle cx="273.0" cy="255.0" r="8.6" fill="#2563EB"/>
+<text x="273.0" y="259.6" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">2</text>
+<circle cx="255.0" cy="291.0" r="8.6" fill="#9333EA"/>
+<text x="255.0" y="295.6" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">7</text>
+<circle cx="57.0" cy="255.0" r="8.6" fill="#2563EB"/>
+<text x="57.0" y="259.6" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">2</text>
+<circle cx="75.0" cy="291.0" r="8.6" fill="#16A34A"/>
+<text x="75.0" y="295.6" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">9</text>
+<circle cx="255.0" cy="453.0" r="8.6" fill="#9333EA"/>
+<text x="255.0" y="457.6" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">7</text>
+<circle cx="291.0" cy="453.0" r="8.6" fill="#16A34A"/>
+<text x="291.0" y="457.6" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">9</text>
+<text x="75.0" y="421.6" text-anchor="middle" font-size="13" fill="#374151">3</text>
+<circle cx="75.0" cy="453.0" r="8.6" fill="#E11D48"/>
+<text x="75.0" y="457.6" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">9</text>
+</svg>
