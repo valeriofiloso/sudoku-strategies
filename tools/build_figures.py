@@ -48,8 +48,8 @@ LEVELS = [
     ("Level 8", "Uniqueness", "#DC2626", "#F87171"),
 ]
 
-S = 54          # cell size
-PAD = 30        # space for labels
+S = 72          # cell size
+PAD = 36        # space for labels
 
 
 def cand_xy(cell: str, d: int, r0: int, c0: int) -> tuple[float, float]:
@@ -85,11 +85,11 @@ def grid_svg(ex: dict) -> str:
 
     # labels
     for c in range(c0, c1 + 1):
-        o.append(f'<text x="{cx(c) + S / 2}" y="{PAD - 10}" text-anchor="middle" '
-                 f'font-size="13" fill="#6B7280">{c + 1}</text>')
+        o.append(f'<text x="{cx(c) + S / 2}" y="{PAD - 12}" text-anchor="middle" '
+                 f'font-size="17" font-weight="600" fill="#6B7280">{c + 1}</text>')
     for r in range(r0, r1 + 1):
-        o.append(f'<text x="{PAD - 14}" y="{ry(r) + S / 2 + 5}" text-anchor="middle" '
-                 f'font-size="13" fill="#6B7280">{ROWS[r]}</text>')
+        o.append(f'<text x="{PAD - 17}" y="{ry(r) + S / 2 + 6}" text-anchor="middle" '
+                 f'font-size="17" font-weight="600" fill="#6B7280">{ROWS[r]}</text>')
 
     # tints, then fills
     tinted = set()
@@ -153,8 +153,8 @@ def grid_svg(ex: dict) -> str:
     for cell, d in ex.get("givens", {}).items():
         if inview(cell):
             r, c = rc(cell)
-            o.append(f'<text x="{cx(c) + S / 2}" y="{ry(r) + S / 2 + 11}" text-anchor="middle" '
-                     f'font-size="31" fill="#111827">{d}</text>')
+            o.append(f'<text x="{cx(c) + S / 2}" y="{ry(r) + S / 2 + 17}" text-anchor="middle" '
+                     f'font-size="48" font-weight="500" fill="#111827">{d}</text>')
 
     # links (under the candidate marks)
     for (a, da), (b, db), kind in ex.get("links", []):
@@ -175,12 +175,12 @@ def grid_svg(ex: dict) -> str:
             x, y = cand_xy(cell, d, r0, c0)
             m = marks.get((cell, d))
             if m:
-                o.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="8.6" fill="{MARK[m]}"/>')
-                o.append(f'<text x="{x:.1f}" y="{y + 4.6:.1f}" text-anchor="middle" '
-                         f'font-size="13" font-weight="700" fill="#FFFFFF">{d}</text>')
+                o.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="11.8" fill="{MARK[m]}"/>')
+                o.append(f'<text x="{x:.1f}" y="{y + 6.8:.1f}" text-anchor="middle" '
+                         f'font-size="19" font-weight="700" fill="#FFFFFF">{d}</text>')
             else:
-                o.append(f'<text x="{x:.1f}" y="{y + 4.6:.1f}" text-anchor="middle" '
-                         f'font-size="13" fill="#374151">{d}</text>')
+                o.append(f'<text x="{x:.1f}" y="{y + 7.4:.1f}" text-anchor="middle" '
+                         f'font-size="21" font-weight="600" fill="#1F2937">{d}</text>')
     o.append("</svg>")
     return "\n".join(o)
 
@@ -319,13 +319,13 @@ ANATOMY = dict(
 def anatomy_svg() -> str:
     s = grid_svg(ANATOMY)
     extra = (f'<text x="{PAD + 6 * S + S / 2}" y="{PAD + 2 * S + S / 2 + 6}" text-anchor="middle" '
-             f'font-size="15" font-weight="700" fill="#92400E">C7</text>'
+             f'font-size="20" font-weight="700" fill="#92400E">C7</text>'
              f'<text x="{PAD + 1 * S}" y="{PAD + 2 * S + S / 2 + 6}" text-anchor="middle" '
-             f'font-size="14" font-weight="700" fill="#1D4ED8">row C</text>'
+             f'font-size="19" font-weight="700" fill="#1D4ED8">row C</text>'
              f'<text x="{PAD + 6 * S + S / 2}" y="{PAD + 7 * S + S / 2 + 6}" text-anchor="middle" '
-             f'font-size="13" font-weight="700" fill="#1D4ED8">col 7</text>'
+             f'font-size="17" font-weight="700" fill="#1D4ED8">col 7</text>'
              f'<text x="{PAD + 4 * S + S / 2}" y="{PAD + 4 * S + S / 2 + 6}" text-anchor="middle" '
-             f'font-size="14" font-weight="700" fill="#6D28D9">box 5</text>')
+             f'font-size="19" font-weight="700" fill="#6D28D9">box 5</text>')
     return s.replace("</svg>", extra + "</svg>")
 
 
