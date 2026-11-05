@@ -124,7 +124,7 @@ def grid_svg(ex: dict) -> str:
     tinted = set()
     for u in ex.get("tint", []):
         tinted |= set(unit_cells(u))
-    for cell in tinted:
+    for cell in sorted(tinted):
         if inview(cell):
             r, c = rc(cell)
             o.append(f'<rect x="{cx(c)}" y="{ry(r)}" width="{S}" height="{S}" fill="{TINT}"/>')
