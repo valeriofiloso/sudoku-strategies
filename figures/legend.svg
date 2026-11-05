@@ -1,33 +1,33 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 150" width="900" height="150" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif">
 <rect width="900" height="150" rx="16" fill="#FFFFFF" stroke="#E5E7EB"/>
-<rect x="22" y="18" width="28" height="28" rx="5" fill="#FFE27A" stroke="#9CA3AF"/>
-<text x="58" y="38" font-size="14" fill="#1F2937">Result cell</text>
-<rect x="176" y="18" width="28" height="28" rx="5" fill="#B9F0B1" stroke="#9CA3AF"/>
-<text x="212" y="38" font-size="14" fill="#1F2937">Pattern cell</text>
-<rect x="338" y="18" width="28" height="28" rx="5" fill="#FFC48A" stroke="#9CA3AF"/>
-<text x="374" y="38" font-size="14" fill="#1F2937">Pivot cell</text>
-<rect x="484" y="18" width="28" height="28" rx="5" fill="#E4D7FF" stroke="#9CA3AF"/>
-<text x="520" y="38" font-size="14" fill="#1F2937">Chain cell</text>
-<rect x="630" y="18" width="28" height="28" rx="5" fill="#F9D3D6" stroke="#9CA3AF"/>
-<text x="666" y="38" font-size="14" fill="#1F2937">Blocked cell</text>
-<circle cx="36" cy="78" r="11" fill="#2563EB"/>
-<text x="36" y="83" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">7</text>
-<text x="56" y="83" font-size="14" fill="#1F2937">Pattern digit</text>
-<circle cx="208" cy="78" r="11" fill="#9333EA"/>
-<text x="208" y="83" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">7</text>
-<text x="228" y="83" font-size="14" fill="#1F2937">Other pattern digit</text>
-<circle cx="428" cy="78" r="11" fill="#E11D48"/>
-<text x="428" y="83" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">7</text>
-<text x="448" y="83" font-size="14" fill="#1F2937">Remove this candidate</text>
-<circle cx="664" cy="78" r="11" fill="#16A34A"/>
-<text x="664" y="83" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">7</text>
-<text x="684" y="83" font-size="14" fill="#1F2937">Correct digit</text>
-<line x1="22" y1="122" x2="82" y2="122" stroke="#7C3AED" stroke-width="3"/>
-<text x="92" y="127" font-size="14" fill="#1F2937">Strong link</text>
-<line x1="220" y1="122" x2="280" y2="122" stroke="#7C3AED" stroke-width="3" stroke-dasharray="7 6"/>
-<text x="290" y="127" font-size="14" fill="#1F2937">Weak link</text>
-<rect x="410" y="109" width="60" height="26" rx="6" fill="none" stroke="#2F6FEB" stroke-width="3"/>
-<text x="480" y="127" font-size="14" fill="#1F2937">Unit of the pattern</text>
-<rect x="650" y="109" width="26" height="26" rx="4" fill="#E6F0FF" stroke="#9CA3AF"/>
-<text x="686" y="127" font-size="14" fill="#1F2937">Base unit</text>
+<rect x="22" y="18" width="26" height="26" rx="5" fill="#FFE27A" stroke="#9CA3AF"/>
+<text x="55" y="36" font-size="13" fill="#1F2937">Result cell</text>
+<rect x="198" y="18" width="26" height="26" rx="5" fill="#B9F0B1" stroke="#9CA3AF"/>
+<text x="231" y="36" font-size="13" fill="#1F2937">Pattern cell</text>
+<rect x="374" y="18" width="26" height="26" rx="5" fill="#FFC48A" stroke="#9CA3AF"/>
+<text x="407" y="36" font-size="13" fill="#1F2937">Pivot cell</text>
+<rect x="550" y="18" width="26" height="26" rx="5" fill="#E4D7FF" stroke="#9CA3AF"/>
+<text x="583" y="36" font-size="13" fill="#1F2937">Chain cell</text>
+<rect x="726" y="18" width="26" height="26" rx="5" fill="#F9D3D6" stroke="#9CA3AF"/>
+<text x="759" y="36" font-size="13" fill="#1F2937">Blocked cell</text>
+<circle cx="35" cy="78" r="11" fill="#2563EB"/>
+<text x="35" y="83" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">7</text>
+<text x="55" y="83" font-size="13" fill="#1F2937">Pattern digit</text>
+<circle cx="255" cy="78" r="11" fill="#9333EA"/>
+<text x="255" y="83" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">7</text>
+<text x="275" y="83" font-size="13" fill="#1F2937">Other pattern digit</text>
+<circle cx="475" cy="78" r="11" fill="#E11D48"/>
+<text x="475" y="83" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">7</text>
+<text x="495" y="83" font-size="13" fill="#1F2937">Remove this candidate</text>
+<circle cx="695" cy="78" r="11" fill="#16A34A"/>
+<text x="695" y="83" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">7</text>
+<text x="715" y="83" font-size="13" fill="#1F2937">Correct digit</text>
+<line x1="22" y1="122" x2="72" y2="122" stroke="#7C3AED" stroke-width="3"/>
+<text x="82" y="127" font-size="13" fill="#1F2937">Strong link</text>
+<line x1="242" y1="122" x2="292" y2="122" stroke="#7C3AED" stroke-width="3" stroke-dasharray="7 6"/>
+<text x="302" y="127" font-size="13" fill="#1F2937">Weak link</text>
+<rect x="462" y="109" width="50" height="26" rx="6" fill="none" stroke="#2F6FEB" stroke-width="3"/>
+<text x="522" y="127" font-size="13" fill="#1F2937">Unit of the pattern</text>
+<rect x="682" y="109" width="26" height="26" rx="4" fill="#E6F0FF" stroke="#9CA3AF"/>
+<text x="716" y="127" font-size="13" fill="#1F2937">Base unit</text>
 </svg>

@@ -1,324 +1,344 @@
 <p align="center">
-  <img src="figures/cover.svg" width="900" alt="Sudoku Strategies: 23 strategies in 8 levels">
+  <img src="figures/cover_it.svg" width="900" alt="Strategie del Sudoku: 23 strategie in 8 livelli">
 </p>
 
-# Sudoku Strategies
+# Strategie del Sudoku
 
-This guide gives the logic of 23 Sudoku strategies.
-Each strategy has a pattern, the logic of the pattern and one example.
-A Python script examined each example. All the examples are correct.
+🇮🇹 Versione italiana (questa pagina) · 🇬🇧 [English version](README.en.md)
+
+Questa guida spiega la logica di 23 strategie del Sudoku.
+Per ogni strategia trovi lo schema da cercare, la sua logica e un esempio.
+Uno script Python ha verificato ogni esempio: sono tutti corretti.
 
 > [!NOTE]
-> This guide uses ASD-STE100 Simplified Technical English.
-> The sentences are short. Each sentence gives one instruction or one fact.
-> The names that are only for Sudoku are technical names.
-> The section [Technical names](#technical-names) gives information about each technical name.
+> La versione originale in inglese è scritta in ASD-STE100 Simplified Technical English.
+> Questa traduzione segue lo stesso stile: frasi brevi, un'idea per frase, termini sempre uguali.
+> Lo standard STE esiste solo per l'inglese, quindi questa versione non è STE in senso stretto.
+> La sezione [Termini tecnici](#termini-tecnici) spiega le parole proprie del Sudoku.
 
 ---
 
-## Contents
+## Indice
 
 <p align="center">
-  <img src="figures/map.svg" width="900" alt="Map of the 23 strategies in 8 levels">
+  <img src="figures/map_it.svg" width="900" alt="Mappa delle 23 strategie in 8 livelli">
 </p>
 
-| Level | Group | Strategies |
+| Livello | Gruppo | Strategie |
 |:-:|---|---|
-| 1 | Singles | [Naked Single](#1-naked-single) · [Hidden Single](#2-hidden-single) |
-| 2 | Subsets | [Naked Pair](#3-naked-pair) · [Hidden Pair](#4-hidden-pair) · [Naked Triple](#5-naked-triple) · [Hidden Triple](#6-hidden-triple) · [Naked Quad](#7-naked-quad) · [Hidden Quad](#8-hidden-quad) |
-| 3 | Intersections | [Pointing](#9-pointing) · [Claiming](#10-claiming) |
+| 1 | Singoli | [Naked Single](#1-naked-single) · [Hidden Single](#2-hidden-single) |
+| 2 | Sottoinsiemi | [Naked Pair](#3-naked-pair) · [Hidden Pair](#4-hidden-pair) · [Naked Triple](#5-naked-triple) · [Hidden Triple](#6-hidden-triple) · [Naked Quad](#7-naked-quad) · [Hidden Quad](#8-hidden-quad) |
+| 3 | Intersezioni | [Pointing](#9-pointing) · [Claiming](#10-claiming) |
 | 4 | Fish | [X-Wing](#11-x-wing) · [Swordfish](#12-swordfish) · [Jellyfish](#13-jellyfish) |
-| 5 | Single-digit chains | [Skyscraper](#14-skyscraper) · [2-String Kite](#15-2-string-kite) · [Turbot Fish](#16-turbot-fish) · [Empty Rectangle](#17-empty-rectangle) |
-| 6 | Wings | [XY-Wing](#18-xy-wing) · [XYZ-Wing](#19-xyz-wing) · [WXYZ-Wing](#20-wxyz-wing) · [W-Wing](#21-w-wing) |
-| 7 | Chains | [XY-Chain](#22-xy-chain) |
-| 8 | Uniqueness | [BUG+1](#23-bug1) |
+| 5 | Catene su una cifra | [Skyscraper](#14-skyscraper) · [2-String Kite](#15-2-string-kite) · [Turbot Fish](#16-turbot-fish) · [Empty Rectangle](#17-empty-rectangle) |
+| 6 | Wing | [XY-Wing](#18-xy-wing) · [XYZ-Wing](#19-xyz-wing) · [WXYZ-Wing](#20-wxyz-wing) · [W-Wing](#21-w-wing) |
+| 7 | Catene | [XY-Chain](#22-xy-chain) |
+| 8 | Unicità | [BUG+1](#23-bug1) |
 
-Other sections:
-[The grid](#the-grid) ·
-[Technical names](#technical-names) ·
-[Colors in the figures](#colors-in-the-figures) ·
-[Procedure for all puzzles](#procedure-for-all-puzzles) ·
-[About the examples](#about-the-examples)
-
----
-
-## The grid
-
-<p align="center">
-  <img src="figures/anatomy.svg" width="870" alt="A grid with row C, column 7 and box 5 in color">
-</p>
-
-A Sudoku grid has 81 cells.
-The rows have the names A to I, from the top to the bottom.
-The columns have the numbers 1 to 9, from the left to the right.
-The name of a cell is the name of its row and the number of its column.
-For example, cell C7 is in row C and in column 7.
-
-The grid has nine boxes, and each box has 3 × 3 cells.
-The boxes have the numbers 1 to 9, from the top left to the bottom right.
-
-**The condition of Sudoku:** each row, each column and each box contains the digits 1 to 9, one time each.
-
-All the strategies in this guide use only this condition.
-Each strategy gives one of these two results:
-
-1. It finds the correct digit for a cell.
-2. It removes a candidate from a cell.
-
----
-
-## Technical names
-
-| Technical name | Information |
-|---|---|
-| **Cell** | The smallest area of the grid. A cell contains one digit. |
-| **Unit** | A row, a column or a box. Each unit has 9 cells. |
-| **Given** | A digit that is in the grid at the start. |
-| **Candidate** | A digit that is possible in an empty cell. |
-| **Peer** | Two cells are peers when they are in the same unit. Two peers cannot contain the same digit. |
-| **Bivalue cell** | An empty cell that has only two candidates. |
-| **Pattern** | A group of cells and candidates that a strategy uses. |
-| **Strong link** | A relation between two candidates. If one candidate is not correct, the other candidate is correct. Example: a digit has only two candidates in a unit. |
-| **Weak link** | A relation between two candidates. If one candidate is correct, the other candidate is not correct. Example: two candidates of the same digit in two peer cells. |
-| **Pivot** | The center cell of a wing. |
-| **Pincer** | An end cell of a wing. |
-| **Base unit** | A unit that starts a fish pattern. |
-| **Cover unit** | A unit where a fish pattern removes candidates. |
-| **Solution** | The full grid with all 81 digits. A correct puzzle has only one solution. |
+Altre sezioni:
+[La griglia](#la-griglia) ·
+[Termini tecnici](#termini-tecnici) ·
+[Colori nelle figure](#colori-nelle-figure) ·
+[Procedura generale](#procedura-generale) ·
+[Gli esempi](#gli-esempi)
 
 > [!TIP]
-> A strong link is also a weak link when the two candidates are peers.
-> Chains use this fact. They go from a strong link to a weak link, and then to a strong link again.
+> I nomi delle strategie restano in inglese. Sono i nomi usati nelle app e nella letteratura sul Sudoku.
+> Accanto a ogni nome trovi la traduzione italiana.
 
 ---
 
-## Colors in the figures
+## La griglia
 
 <p align="center">
-  <img src="figures/legend.svg" width="900" alt="Legend of the colors in the figures">
+  <img src="figures/anatomy_it.svg" width="870" alt="Una griglia con la riga C, la colonna 7 e il riquadro 5 colorati">
 </p>
 
-The figures show only the candidates that are important for the strategy.
-Some figures show only one digit.
-In these figures, the grid shows all the candidates of that digit.
+Una griglia di Sudoku ha 81 celle.
+Le righe hanno le lettere da A a I, dall'alto verso il basso.
+Le colonne hanno i numeri da 1 a 9, da sinistra verso destra.
+Il nome di una cella è la lettera della riga seguita dal numero della colonna.
+Per esempio, la cella C7 è nella riga C e nella colonna 7.
+
+La griglia ha nove riquadri di 3 × 3 celle.
+I riquadri hanno i numeri da 1 a 9, dall'alto a sinistra fino in basso a destra.
+
+**La regola del Sudoku:** ogni riga, ogni colonna e ogni riquadro contiene le cifre da 1 a 9, una volta sola.
+
+Tutte le strategie di questa guida derivano solo da questa regola.
+Ogni strategia dà uno di questi due risultati:
+
+1. Trova la cifra corretta di una cella.
+2. Toglie un candidato da una cella.
 
 ---
 
-<p align="center"><img src="figures/level1.svg" width="900" alt="Level 1: Singles"></p>
+## Termini tecnici
+
+| Termine | Significato |
+|---|---|
+| **Cella** | La casella più piccola della griglia. Contiene una cifra. |
+| **Unità** | Una riga, una colonna o un riquadro. Ogni unità ha 9 celle. |
+| **Cifra data** | Una cifra presente nella griglia fin dall'inizio. |
+| **Candidato** | Una cifra ancora possibile in una cella vuota. |
+| **Celle che si vedono** | Due celle si vedono quando sono nella stessa unità. Due celle che si vedono non possono contenere la stessa cifra. |
+| **Cella bivalore** | Una cella vuota con due soli candidati. |
+| **Schema** | Il gruppo di celle e candidati che una strategia usa. |
+| **Legame forte** | Una relazione tra due candidati: se uno non è corretto, l'altro è corretto. Esempio: una cifra ha solo due candidati in un'unità. |
+| **Legame debole** | Una relazione tra due candidati: se uno è corretto, l'altro non è corretto. Esempio: due candidati della stessa cifra in due celle che si vedono. |
+| **Perno** | La cella centrale di un wing. |
+| **Pinza** | Una cella all'estremità di un wing. |
+| **Unità di base** | Un'unità da cui parte uno schema fish. |
+| **Unità di copertura** | Un'unità in cui uno schema fish toglie candidati. |
+| **Soluzione** | La griglia completa, con tutte le 81 cifre. Un puzzle corretto ha una sola soluzione. |
+
+> [!TIP]
+> Un legame forte è anche un legame debole, quando i due candidati si vedono.
+> Le catene usano questo fatto: passano da un legame forte a uno debole, poi di nuovo a uno forte.
+
+---
+
+## Colori nelle figure
+
+<p align="center">
+  <img src="figures/legend_it.svg" width="900" alt="Legenda dei colori delle figure">
+</p>
+
+Le figure mostrano solo i candidati che contano per la strategia.
+Alcune figure mostrano una sola cifra: in questo caso compaiono tutti i candidati di quella cifra.
+Un bordo grigio tratteggiato indica che la griglia continua oltre la figura.
+
+---
+
+<p align="center"><img src="figures/level1_it.svg" width="900" alt="Livello 1: Singoli"></p>
 
 ## 1. Naked Single
 
-**Strategy:** if a cell has only one candidate, that candidate is the correct digit.
+*Singolo nudo*
 
-**Logic:**
-The peers of a cell contain some digits.
-The cell cannot contain these digits.
-When the peers contain eight different digits, only one digit stays for the cell.
+**Strategia:** se una cella ha un solo candidato, quel candidato è la cifra corretta.
+
+**Logica:**
+Le celle che la vedono contengono alcune cifre.
+La cella non può contenere nessuna di queste cifre.
+Quando le celle che la vedono contengono otto cifre diverse, per la cella resta una sola cifra.
 
 <p align="center">
-  <img src="figures/naked_single.svg" width="870" alt="Naked single in cell E5">
+  <img src="figures/naked_single.svg" width="870" alt="Naked Single nella cella E5">
 </p>
 
-**Example:**
+**Esempio:**
 
-1. Examine the peers of cell E5.
-2. Row E contains 1, 2 and 3.
-3. Column 5 contains 4, 5 and 6.
-4. Box 5 contains 7 and 8.
-5. The peers of E5 contain the digits 1 to 8. Only the digit 9 stays.
+1. Esamina le celle che vedono E5.
+2. La riga E contiene 1, 2 e 3.
+3. La colonna 5 contiene 4, 5 e 6.
+4. Il riquadro 5 contiene 7 e 8.
+5. Le celle che vedono E5 contengono le cifre da 1 a 8. Resta solo il 9.
 
-**Result:** write 9 in cell E5.
+**Risultato:** scrivi 9 nella cella E5.
 
 ---
 
 ## 2. Hidden Single
 
-**Strategy:** if a digit has only one possible cell in a unit, that cell contains the digit.
+*Singolo nascosto*
 
-**Logic:**
-Each unit must contain each digit.
-A cell can have many candidates.
-But if a digit is possible in only one cell of a unit, the digit must be in that cell.
-The other candidates of the cell make this digit not easy to find. Thus the name is "hidden".
+**Strategia:** se in un'unità una cifra può stare in una sola cella, quella cella contiene la cifra.
+
+**Logica:**
+Ogni unità deve contenere ogni cifra.
+Una cella può avere molti candidati.
+Ma se una cifra è possibile in una sola cella dell'unità, la cifra deve stare in quella cella.
+Gli altri candidati della cella rendono questa cifra difficile da vedere: per questo il singolo è "nascosto".
 
 <p align="center">
-  <img src="figures/hidden_single.svg" width="690" alt="Hidden single: digit 5 in cell C3">
+  <img src="figures/hidden_single.svg" width="690" alt="Hidden Single: la cifra 5 nella cella C3">
 </p>
 
-**Example:**
+**Esempio:**
 
-1. Box 1 must contain a 5. Find the cells of box 1 that can contain a 5.
-2. Cell A7 contains a 5. Row A cannot have two 5s. Cells A1, A2 and A3 cannot contain 5.
-3. Cell B5 contains a 5. Cells B1 and B3 cannot contain 5. Cell B2 contains 8.
-4. Cell G1 contains a 5. Column 1 cannot have two 5s. Cell C1 cannot contain 5.
-5. Cell E2 contains a 5. Cell C2 cannot contain 5.
-6. In box 1, only cell C3 can contain a 5.
+1. Il riquadro 1 deve contenere un 5. Cerca le celle del riquadro 1 che possono contenerlo.
+2. La cella A7 contiene un 5. La riga A non può avere un altro 5: A1, A2 e A3 sono escluse.
+3. La cella B5 contiene un 5. B1 e B3 sono escluse. B2 contiene già l'8.
+4. La cella G1 contiene un 5. La colonna 1 non può avere un altro 5: C1 è esclusa.
+5. La cella E2 contiene un 5. C2 è esclusa.
+6. Nel riquadro 1, solo la cella C3 può contenere il 5.
 
-**Result:** write 5 in cell C3.
+**Risultato:** scrivi 5 nella cella C3.
 
 ---
 
-<p align="center"><img src="figures/level2.svg" width="900" alt="Level 2: Subsets"></p>
+<p align="center"><img src="figures/level2_it.svg" width="900" alt="Livello 2: Sottoinsiemi"></p>
 
 ## 3. Naked Pair
 
-**Strategy:** two cells in one unit have the same two candidates, and no other candidates.
-Remove these two digits from all the other cells of the unit.
+*Coppia nuda*
 
-**Logic:**
-The two cells must contain the two digits.
-If one cell contains one of the digits, the other cell contains the other digit.
-In the two conditions, the two digits are in these two cells.
-No other cell of the unit can contain these two digits.
+**Strategia:** due celle della stessa unità hanno gli stessi due candidati, e nessun altro.
+Togli queste due cifre da tutte le altre celle dell'unità.
+
+**Logica:**
+Le due celle devono contenere le due cifre.
+Se una cella contiene una delle due cifre, l'altra cella contiene l'altra cifra.
+In entrambi i casi, le due cifre stanno in queste due celle.
+Nessun'altra cella dell'unità può contenerle.
 
 <p align="center">
-  <img src="figures/naked_pair.svg" width="870" alt="Naked pair 2 and 7 in row D">
+  <img src="figures/naked_pair.svg" width="870" alt="Naked Pair con 2 e 7 nella riga D">
 </p>
 
-**Example (row D):**
+**Esempio (riga D):**
 
-1. Cells D1 and D2 have only the candidates 2 and 7.
-2. If D1 is 2, then D2 is 7. If D1 is 7, then D2 is 2.
-3. The digits 2 and 7 are in D1 and D2. They cannot be in other cells of row D.
+1. Le celle D1 e D2 hanno solo i candidati 2 e 7.
+2. Se D1 è 2, allora D2 è 7. Se D1 è 7, allora D2 è 2.
+3. Il 2 e il 7 stanno in D1 e D2. Non possono stare in altre celle della riga D.
 
-**Result:**
+**Risultato:**
 
-| Cell | Remove |
+| Cella | Togli |
 |:-:|:-:|
 | D3 | 2 |
 | D8 | 2 |
 | D5 | 7 |
 | D9 | 7 |
 
-After this step, D9 has only the candidate 9. D9 is a naked single.
+Dopo questo passo, D9 ha solo il candidato 9: è un Naked Single.
 
 > [!TIP]
-> If the two cells are also in the same box, remove the two digits from that box too.
+> Se le due celle sono anche nello stesso riquadro, togli le due cifre anche dal riquadro.
 
 ---
 
 ## 4. Hidden Pair
 
-**Strategy:** in one unit, two digits are candidates in only the same two cells.
-Remove all the other candidates from these two cells.
+*Coppia nascosta*
 
-**Logic:**
-The unit must contain the two digits.
-Only two cells can contain them.
-Thus one cell contains one digit, and the other cell contains the other digit.
-These two cells cannot contain a different digit.
+**Strategia:** in un'unità, due cifre sono candidate solo nelle stesse due celle.
+Togli tutti gli altri candidati da queste due celle.
+
+**Logica:**
+L'unità deve contenere le due cifre.
+Solo due celle possono contenerle.
+Quindi una cella contiene una cifra e l'altra cella contiene l'altra.
+Queste due celle non possono contenere una cifra diversa.
 
 <p align="center">
-  <img src="figures/hidden_pair.svg" width="870" alt="Hidden pair 4 and 6 in row D">
+  <img src="figures/hidden_pair.svg" width="870" alt="Hidden Pair con 4 e 6 nella riga D">
 </p>
 
-**Example (row D):**
+**Esempio (riga D):**
 
-1. Find the cells of row D that can contain 4. Only D2 and D7 can contain 4.
-2. Find the cells of row D that can contain 6. Only D2 and D7 can contain 6.
-3. The digits 4 and 6 must be in D2 and D7.
+1. Cerca le celle della riga D che possono contenere il 4: solo D2 e D7.
+2. Cerca le celle della riga D che possono contenere il 6: solo D2 e D7.
+3. Il 4 e il 6 devono stare in D2 e D7.
 
-**Result:**
+**Risultato:**
 
-| Cell | Remove |
+| Cella | Togli |
 |:-:|:-:|
-| D2 | 1 and 8 |
-| D7 | 3 and 9 |
+| D2 | 1 e 8 |
+| D7 | 3 e 9 |
 
-After this step, D2 and D7 are a naked pair.
+Dopo questo passo, D2 e D7 formano un Naked Pair.
 
 ---
 
 ## 5. Naked Triple
 
-**Strategy:** three cells in one unit have candidates from the same three digits only.
-Remove these three digits from all the other cells of the unit.
+*Tripla nuda*
 
-**Logic:**
-Three cells must contain three different digits.
-These cells have only three possible digits.
-Thus the three cells use the three digits.
-No other cell of the unit can contain these digits.
+**Strategia:** tre celle della stessa unità hanno candidati presi solo da tre cifre.
+Togli queste tre cifre da tutte le altre celle dell'unità.
+
+**Logica:**
+Tre celle devono contenere tre cifre diverse.
+Queste celle hanno solo tre cifre possibili.
+Quindi le tre celle usano le tre cifre.
+Nessun'altra cella dell'unità può contenerle.
 
 > [!IMPORTANT]
-> Each cell of the triple does not have to contain all three digits.
-> In the example, each cell has only two of the three digits.
+> Non serve che ogni cella della tripla abbia tutte e tre le cifre.
+> Nell'esempio, ogni cella ha solo due delle tre cifre.
 
 <p align="center">
-  <img src="figures/naked_triple.svg" width="870" alt="Naked triple 3, 6 and 8 in row D">
+  <img src="figures/naked_triple.svg" width="870" alt="Naked Triple con 3, 6 e 8 nella riga D">
 </p>
 
-**Example (row D):**
+**Esempio (riga D):**
 
-1. Cell D1 has the candidates 3 and 6.
-2. Cell D4 has the candidates 3 and 8.
-3. Cell D7 has the candidates 6 and 8.
-4. Together, the three cells have only the digits 3, 6 and 8.
+1. La cella D1 ha i candidati 3 e 6.
+2. La cella D4 ha i candidati 3 e 8.
+3. La cella D7 ha i candidati 6 e 8.
+4. Insieme, le tre celle hanno solo le cifre 3, 6 e 8.
 
-**Result:**
+**Risultato:**
 
-| Cell | Remove |
+| Cella | Togli |
 |:-:|:-:|
 | D2 | 3 |
 | D5 | 6 |
 | D6 | 8 |
 
-After this step, D6 has only the candidate 1. D6 is a naked single.
+Dopo questo passo, D6 ha solo il candidato 1: è un Naked Single.
 
 ---
 
 ## 6. Hidden Triple
 
-**Strategy:** in one unit, three digits are candidates in only three cells.
-Remove all the other candidates from these three cells.
+*Tripla nascosta*
 
-**Logic:**
-The unit must contain the three digits.
-Only three cells can contain them.
-Thus these three cells contain these three digits, and no other digit.
+**Strategia:** in un'unità, tre cifre sono candidate solo in tre celle.
+Togli tutti gli altri candidati da queste tre celle.
+
+**Logica:**
+L'unità deve contenere le tre cifre.
+Solo tre celle possono contenerle.
+Quindi queste tre celle contengono queste tre cifre, e nessun'altra.
 
 <p align="center">
-  <img src="figures/hidden_triple.svg" width="330" alt="Hidden triple 2, 5 and 7 in box 1">
+  <img src="figures/hidden_triple.svg" width="330" alt="Hidden Triple con 2, 5 e 7 nel riquadro 1">
 </p>
 
-**Example (box 1):**
+**Esempio (riquadro 1):**
 
-1. The digit 2 is a candidate only in A1 and B3.
-2. The digit 5 is a candidate only in A1 and C2.
-3. The digit 7 is a candidate only in B3 and C2.
-4. The digits 2, 5 and 7 must be in the three cells A1, B3 and C2.
+1. La cifra 2 è candidata solo in A1 e B3.
+2. La cifra 5 è candidata solo in A1 e C2.
+3. La cifra 7 è candidata solo in B3 e C2.
+4. Il 2, il 5 e il 7 devono stare nelle tre celle A1, B3 e C2.
 
-**Result:**
+**Risultato:**
 
-| Cell | Remove |
+| Cella | Togli |
 |:-:|:-:|
-| A1 | 4 and 8 |
+| A1 | 4 e 8 |
 | B3 | 1 |
-| C2 | 3 and 6 |
+| C2 | 3 e 6 |
 
 ---
 
 ## 7. Naked Quad
 
-**Strategy:** four cells in one unit have candidates from the same four digits only.
-Remove these four digits from all the other cells of the unit.
+*Quadrupla nuda*
 
-**Logic:**
-The logic is the same as the logic of the naked pair and the naked triple.
-Four cells must contain four different digits, and they have only four possible digits.
+**Strategia:** quattro celle della stessa unità hanno candidati presi solo da quattro cifre.
+Togli queste quattro cifre da tutte le altre celle dell'unità.
+
+**Logica:**
+È la stessa logica del Naked Pair e del Naked Triple.
+Quattro celle devono contenere quattro cifre diverse, e hanno solo quattro cifre possibili.
 
 <p align="center">
-  <img src="figures/naked_quad.svg" width="870" alt="Naked quad 1, 5, 8 and 9 in row D">
+  <img src="figures/naked_quad.svg" width="870" alt="Naked Quad con 1, 5, 8 e 9 nella riga D">
 </p>
 
-**Example (row D):**
+**Esempio (riga D):**
 
-1. The cells D1, D3, D5 and D8 have only the digits 1, 5, 8 and 9.
-2. These four digits must be in these four cells.
+1. Le celle D1, D3, D5 e D8 hanno solo le cifre 1, 5, 8 e 9.
+2. Queste quattro cifre devono stare in queste quattro celle.
 
-**Result:**
+**Risultato:**
 
-| Cell | Remove |
+| Cella | Togli |
 |:-:|:-:|
 | D2 | 5 |
 | D4 | 8 |
@@ -328,21 +348,23 @@ Four cells must contain four different digits, and they have only four possible 
 
 ## 8. Hidden Quad
 
-**Strategy:** in one unit, four digits are candidates in only four cells.
-Remove all the other candidates from these four cells.
+*Quadrupla nascosta*
+
+**Strategia:** in un'unità, quattro cifre sono candidate solo in quattro celle.
+Togli tutti gli altri candidati da queste quattro celle.
 
 <p align="center">
-  <img src="figures/hidden_quad.svg" width="870" alt="Hidden quad 1, 4, 6 and 9 in row D">
+  <img src="figures/hidden_quad.svg" width="870" alt="Hidden Quad con 1, 4, 6 e 9 nella riga D">
 </p>
 
-**Example (row D):**
+**Esempio (riga D):**
 
-1. The digits 1, 4, 6 and 9 are candidates only in D1, D3, D6 and D8.
-2. These four digits must be in these four cells.
+1. Le cifre 1, 4, 6 e 9 sono candidate solo in D1, D3, D6 e D8.
+2. Queste quattro cifre devono stare in queste quattro celle.
 
-**Result:**
+**Risultato:**
 
-| Cell | Remove |
+| Cella | Togli |
 |:-:|:-:|
 | D1 | 7 |
 | D3 | 2 |
@@ -350,11 +372,11 @@ Remove all the other candidates from these four cells.
 | D8 | 8 |
 
 > [!TIP]
-> **Each naked subset has a hidden subset in the same unit.**
-> Count the empty cells in a unit. If a naked subset uses some of these cells, the other empty cells make a hidden subset.
-> Use the subset with the smaller number of cells. It is easier to find.
+> **Ogni sottoinsieme nudo ha un sottoinsieme nascosto nella stessa unità.**
+> Conta le celle vuote di un'unità. Se un sottoinsieme nudo ne usa alcune, le altre celle vuote formano un sottoinsieme nascosto.
+> Cerca quello con meno celle: è più facile da trovare.
 
-| Number of cells | Naked (cells → digits) | Hidden (digits → cells) |
+| Numero di celle | Nudo (celle → cifre) | Nascosto (cifre → celle) |
 |:-:|---|---|
 | 2 | Naked Pair | Hidden Pair |
 | 3 | Naked Triple | Hidden Triple |
@@ -362,481 +384,495 @@ Remove all the other candidates from these four cells.
 
 ---
 
-<p align="center"><img src="figures/level3.svg" width="900" alt="Level 3: Intersections"></p>
+<p align="center"><img src="figures/level3_it.svg" width="900" alt="Livello 3: Intersezioni"></p>
 
-The strategies of level 3 use the cells that are in a box and also in a row (or a column).
-The name for the two strategies is **Intersection Removal**.
+Le strategie del livello 3 usano le celle che stanno in un riquadro e anche in una riga (o in una colonna).
+Insieme si chiamano **Intersection Removal** (eliminazione per intersezione).
 
 ## 9. Pointing
 
-**Strategy:** in a box, a digit is a candidate only in one row (or one column).
-Remove that digit from the cells of that row (or column) that are not in the box.
+*Candidati che puntano*
 
-**Logic:**
-The box must contain the digit.
-All the candidates of the digit in the box are in one row.
-Thus the digit of that row is in the box.
-The other cells of the row cannot contain the digit.
+**Strategia:** in un riquadro, una cifra è candidata solo in una riga (o in una colonna).
+Togli quella cifra dalle celle di quella riga (o colonna) che sono fuori dal riquadro.
+
+**Logica:**
+Il riquadro deve contenere la cifra.
+Tutti i candidati della cifra nel riquadro stanno in una sola riga.
+Quindi la cifra di quella riga sta nel riquadro.
+Le altre celle della riga non possono contenerla.
 
 <p align="center">
-  <img src="figures/pointing.svg" width="870" alt="Pointing: digit 3 in box 1 and row A">
+  <img src="figures/pointing.svg" width="870" alt="Pointing: la cifra 3 nel riquadro 1 e nella riga A">
 </p>
 
-**Example (digit 3):**
+**Esempio (cifra 3):**
 
-1. Box 1 must contain a 3.
-2. In box 1, only A2 and A3 can contain 3. These two cells are in row A.
-3. The 3 of row A is in A2 or in A3.
+1. Il riquadro 1 deve contenere un 3.
+2. Nel riquadro 1, solo A2 e A3 possono contenere il 3. Le due celle sono nella riga A.
+3. Il 3 della riga A sta in A2 o in A3.
 
-**Result:** remove 3 from A5 and from A8.
+**Risultato:** togli il 3 da A5 e da A8.
 
 ---
 
 ## 10. Claiming
 
-**Strategy:** in a row (or a column), a digit is a candidate only in one box.
-Remove that digit from the other cells of that box.
+*Riga che reclama il riquadro*
 
-**Logic:**
-The row must contain the digit.
-All the candidates of the digit in the row are in one box.
-Thus the digit of that box is in the row.
-The other cells of the box cannot contain the digit.
+**Strategia:** in una riga (o in una colonna), una cifra è candidata solo dentro un riquadro.
+Togli quella cifra dalle altre celle di quel riquadro.
+
+**Logica:**
+La riga deve contenere la cifra.
+Tutti i candidati della cifra nella riga stanno in un solo riquadro.
+Quindi la cifra di quel riquadro sta nella riga.
+Le altre celle del riquadro non possono contenerla.
 
 <p align="center">
-  <img src="figures/claiming.svg" width="870" alt="Claiming: digit 7 in row G is only in box 9">
+  <img src="figures/claiming.svg" width="870" alt="Claiming: la cifra 7 nella riga G sta solo nel riquadro 9">
 </p>
 
-**Example (digit 7):**
+**Esempio (cifra 7):**
 
-1. Row G must contain a 7.
-2. In row G, only G7 and G9 can contain 7. These two cells are in box 9.
-3. The 7 of box 9 is in G7 or in G9.
+1. La riga G deve contenere un 7.
+2. Nella riga G, solo G7 e G9 possono contenere il 7. Le due celle sono nel riquadro 9.
+3. Il 7 del riquadro 9 sta in G7 o in G9.
 
-**Result:** remove 7 from H8 and from I7.
+**Risultato:** togli il 7 da H8 e da I7.
 
-Other name: Box/Line Reduction.
+Altro nome: Box/Line Reduction.
 
 ---
 
-<p align="center"><img src="figures/level4.svg" width="900" alt="Level 4: Fish"></p>
+<p align="center"><img src="figures/level4_it.svg" width="900" alt="Livello 4: Fish"></p>
 
-A fish uses one digit.
-It has N base units and N cover units.
-The base units are parallel rows. The cover units are parallel columns.
-You can also use columns as base units and rows as cover units.
+Un fish ("pesce") usa una sola cifra.
+Ha N unità di base e N unità di copertura.
+Le unità di base sono righe, le unità di copertura sono colonne.
+Puoi anche invertire i ruoli: colonne come base e righe come copertura.
 
-| Fish | Number of base rows | Number of cover columns |
+| Fish | Righe di base | Colonne di copertura |
 |---|:-:|:-:|
 | X-Wing | 2 | 2 |
 | Swordfish | 3 | 3 |
 | Jellyfish | 4 | 4 |
 
-**General logic of all fish:**
+**Logica comune a tutti i fish:**
 
-1. Each base row must contain the digit one time.
-2. In each base row, the digit is possible only in the cover columns.
-3. Two cells of one column cannot contain the digit at the same time.
-4. Thus the N base rows put the N digits into the N cover columns, one in each column.
-5. The cover columns get their digit from the base rows. Remove the digit from all the other cells of the cover columns.
+1. Ogni riga di base deve contenere la cifra una volta.
+2. In ogni riga di base, la cifra è possibile solo nelle colonne di copertura.
+3. Due celle della stessa colonna non possono contenere la cifra entrambe.
+4. Quindi le N righe di base mettono N cifre nelle N colonne di copertura, una per colonna.
+5. Ogni colonna di copertura riceve la sua cifra dalle righe di base. Togli la cifra da tutte le altre celle delle colonne di copertura.
 
 ## 11. X-Wing
 
-**Strategy:** in two rows, a digit is possible only in the same two columns.
-Remove the digit from all the other cells of these two columns.
+**Strategia:** in due righe, una cifra è possibile solo nelle stesse due colonne.
+Togli la cifra da tutte le altre celle di queste due colonne.
 
 <p align="center">
-  <img src="figures/x_wing.svg" width="870" alt="X-Wing on digit 4 in rows B and G, columns 2 and 7">
+  <img src="figures/x_wing.svg" width="870" alt="X-Wing sulla cifra 4 nelle righe B e G, colonne 2 e 7">
 </p>
 
-**Example (digit 4):**
+**Esempio (cifra 4):**
 
-1. In row B, only B2 and B7 can contain 4.
-2. In row G, only G2 and G7 can contain 4.
-3. If B2 is 4, then G2 is not 4. Thus G7 is 4.
-4. If B7 is 4, then G7 is not 4. Thus G2 is 4.
-5. In the two conditions, column 2 and column 7 get their 4 from rows B and G.
+1. Nella riga B, solo B2 e B7 possono contenere il 4.
+2. Nella riga G, solo G2 e G7 possono contenere il 4.
+3. Se B2 è 4, allora G2 non è 4. Quindi G7 è 4.
+4. Se B7 è 4, allora G7 non è 4. Quindi G2 è 4.
+5. In entrambi i casi, le colonne 2 e 7 ricevono il loro 4 dalle righe B e G.
 
-**Result:** remove 4 from E2, I2 and D7. The 4 in E5 and in H9 stays.
+**Risultato:** togli il 4 da E2, I2 e D7. Il 4 in E5 e in H9 resta.
 
-The four cells make a rectangle. The two possible conditions make the shape of an "X".
+Le quattro celle formano un rettangolo. I due casi possibili disegnano una "X".
 
 ---
 
 ## 12. Swordfish
 
-**Strategy:** in three rows, a digit is possible only in the same three columns.
-Remove the digit from all the other cells of these three columns.
+**Strategia:** in tre righe, una cifra è possibile solo nelle stesse tre colonne.
+Togli la cifra da tutte le altre celle di queste tre colonne.
 
 <p align="center">
-  <img src="figures/swordfish.svg" width="870" alt="Swordfish on digit 2 in rows B, E and H, columns 1, 5 and 8">
+  <img src="figures/swordfish.svg" width="870" alt="Swordfish sulla cifra 2 nelle righe B, E e H, colonne 1, 5 e 8">
 </p>
 
-**Example (digit 2):**
+**Esempio (cifra 2):**
 
-1. In row B, the 2 is possible in columns 1 and 5.
-2. In row E, the 2 is possible in columns 5 and 8.
-3. In row H, the 2 is possible in columns 1 and 8.
-4. The three rows put three 2s into the columns 1, 5 and 8, one in each column.
+1. Nella riga B, il 2 è possibile nelle colonne 1 e 5.
+2. Nella riga E, il 2 è possibile nelle colonne 5 e 8.
+3. Nella riga H, il 2 è possibile nelle colonne 1 e 8.
+4. Le tre righe mettono tre 2 nelle colonne 1, 5 e 8, uno per colonna.
 
-**Result:** remove 2 from D1, G5 and C8. The 2 in D4 and in G3 stays.
+**Risultato:** togli il 2 da D1, G5 e C8. Il 2 in D4 e in G3 resta.
 
 > [!NOTE]
-> A base row can have two or three candidates. It does not have to have three.
+> Una riga di base può avere due o tre candidati. Non deve per forza averne tre.
 
 ---
 
 ## 13. Jellyfish
 
-**Strategy:** in four rows, a digit is possible only in the same four columns.
-Remove the digit from all the other cells of these four columns.
+**Strategia:** in quattro righe, una cifra è possibile solo nelle stesse quattro colonne.
+Togli la cifra da tutte le altre celle di queste quattro colonne.
 
 <p align="center">
-  <img src="figures/jellyfish.svg" width="870" alt="Jellyfish on digit 6 in rows A, C, F and I, columns 2, 4, 6 and 9">
+  <img src="figures/jellyfish.svg" width="870" alt="Jellyfish sulla cifra 6 nelle righe A, C, F e I, colonne 2, 4, 6 e 9">
 </p>
 
-**Example (digit 6):**
+**Esempio (cifra 6):**
 
-1. The base rows are A, C, F and I.
-2. In these rows, the 6 is possible only in the columns 2, 4, 6 and 9.
-3. The four rows put four 6s into these four columns, one in each column.
+1. Le righe di base sono A, C, F e I.
+2. In queste righe, il 6 è possibile solo nelle colonne 2, 4, 6 e 9.
+3. Le quattro righe mettono quattro 6 in queste quattro colonne, uno per colonna.
 
-**Result:** remove 6 from D2, E6, H4 and G9. The 6 in B5 and in D7 stays.
+**Risultato:** togli il 6 da D2, E6, H4 e G9. Il 6 in B5 e in D7 resta.
 
 ---
 
-<p align="center"><img src="figures/level5.svg" width="900" alt="Level 5: Single-digit chains"></p>
+<p align="center"><img src="figures/level5_it.svg" width="900" alt="Livello 5: Catene su una cifra"></p>
 
-The strategies of level 5 use one digit and a short chain of links:
-**strong link → weak link → strong link**.
+Le strategie del livello 5 usano una sola cifra e una catena corta:
+**legame forte → legame debole → legame forte**.
 
-**General logic:**
+**Logica comune:**
 
-1. The two candidates in the center of the chain are peers. They cannot be correct at the same time.
-2. Thus one of them is not correct. Its strong link then makes the end of the chain on its side correct.
-3. One of the two ends is correct. You do not know which end.
-4. A cell that is a peer of the two ends cannot contain the digit.
+1. I due candidati al centro della catena si vedono: non possono essere corretti entrambi.
+2. Quindi almeno uno dei due non è corretto. Il suo legame forte rende corretta l'estremità della catena dal suo lato.
+3. Una delle due estremità è corretta. Non sai quale.
+4. Una cella che vede entrambe le estremità non può contenere la cifra.
 
 ## 14. Skyscraper
 
-**Strategy:** two columns each have a strong link on the same digit.
-The two links have their bottom ends in the same row.
-Remove the digit from the cells that are peers of the two top ends.
+*Grattacielo*
+
+**Strategia:** due colonne hanno ciascuna un legame forte sulla stessa cifra.
+Le estremità in basso dei due legami sono nella stessa riga.
+Togli la cifra dalle celle che vedono entrambe le estremità in alto.
 
 <p align="center">
-  <img src="figures/skyscraper.svg" width="780" alt="Skyscraper on digit 1 in columns 2 and 6">
+  <img src="figures/skyscraper.svg" width="780" alt="Skyscraper sulla cifra 1 nelle colonne 2 e 6">
 </p>
 
-**Example (digit 1):**
+**Esempio (cifra 1):**
 
-1. In column 2, only C2 and H2 can contain 1. This is a strong link.
-2. In column 6, only A6 and H6 can contain 1. This is a strong link.
-3. H2 and H6 are in row H. They cannot contain 1 at the same time.
-4. If H2 is not 1, then C2 is 1. If H6 is not 1, then A6 is 1.
-5. Thus C2 or A6 is 1. These two cells are the top ends of the two links.
+1. Nella colonna 2, solo C2 e H2 possono contenere l'1. È un legame forte.
+2. Nella colonna 6, solo A6 e H6 possono contenere l'1. È un legame forte.
+3. H2 e H6 sono nella riga H: non possono contenere l'1 entrambe.
+4. Se H2 non è 1, allora C2 è 1. Se H6 non è 1, allora A6 è 1.
+5. Quindi C2 o A6 è 1. Sono le cime dei due "grattacieli".
 
-**Result:**
+**Risultato:**
 
-| Cell | Peer of C2 by | Peer of A6 by | Remove |
+| Cella | Vede C2 tramite | Vede A6 tramite | Togli |
 |:-:|---|---|:-:|
-| A3 | box 1 | row A | 1 |
-| C5 | row C | box 2 | 1 |
+| A3 | riquadro 1 | riga A | 1 |
+| C5 | riga C | riquadro 2 | 1 |
 
 ---
 
 ## 15. 2-String Kite
 
-**Strategy:** a digit has a strong link in a row and a strong link in a column.
-One end of each link is in the same box.
-Remove the digit from the cell that is a peer of the two other ends.
+*Aquilone a due fili*
+
+**Strategia:** una cifra ha un legame forte in una riga e un legame forte in una colonna.
+Un'estremità di ciascun legame sta nello stesso riquadro.
+Togli la cifra dalla cella che vede le altre due estremità.
 
 <p align="center">
-  <img src="figures/kite.svg" width="870" alt="2-String Kite on digit 5 in row B and column 3">
+  <img src="figures/kite.svg" width="870" alt="2-String Kite sulla cifra 5 nella riga B e nella colonna 3">
 </p>
 
-**Example (digit 5):**
+**Esempio (cifra 5):**
 
-1. In row B, only B2 and B8 can contain 5.
-2. In column 3, only A3 and G3 can contain 5.
-3. B2 and A3 are in box 1. They cannot contain 5 at the same time.
-4. If B2 is not 5, then B8 is 5. If A3 is not 5, then G3 is 5.
-5. Thus B8 or G3 is 5.
-6. Cell G8 is a peer of B8 (column 8) and of G3 (row G).
+1. Nella riga B, solo B2 e B8 possono contenere il 5.
+2. Nella colonna 3, solo A3 e G3 possono contenere il 5.
+3. B2 e A3 sono nel riquadro 1: non possono contenere il 5 entrambe.
+4. Se B2 non è 5, allora B8 è 5. Se A3 non è 5, allora G3 è 5.
+5. Quindi B8 o G3 è 5.
+6. La cella G8 vede B8 (colonna 8) e G3 (riga G).
 
-**Result:** remove 5 from G8.
+**Risultato:** togli il 5 da G8.
 
 ---
 
 ## 16. Turbot Fish
 
-**Strategy:** a digit makes the chain strong link → weak link → strong link.
-Remove the digit from the cells that are peers of the two ends of the chain.
+*Rombo*
 
-The Skyscraper and the 2-String Kite are two types of Turbot Fish.
-The Turbot Fish is the general type. Its strong links can be in a row, in a column or in a box.
+**Strategia:** una cifra forma la catena legame forte → legame debole → legame forte.
+Togli la cifra dalle celle che vedono entrambe le estremità della catena.
+
+Lo Skyscraper e il 2-String Kite sono due casi particolari del Turbot Fish.
+Il Turbot Fish è la forma generale: i suoi legami forti possono stare in una riga, in una colonna o in un riquadro.
 
 <p align="center">
-  <img src="figures/turbot.svg" width="780" alt="Turbot Fish on digit 7 with column 1 and box 5">
+  <img src="figures/turbot.svg" width="780" alt="Turbot Fish sulla cifra 7 con la colonna 1 e il riquadro 5">
 </p>
 
-**Example (digit 7):**
+**Esempio (cifra 7):**
 
-1. In column 1, only B1 and F1 can contain 7. This is the first strong link.
-2. F1 and F5 are in row F. This is the weak link.
-3. In box 5, only F5 and D6 can contain 7. This is the other strong link.
-4. F1 and F5 cannot contain 7 at the same time.
-5. If F1 is not 7, then B1 is 7. If F5 is not 7, then D6 is 7.
-6. Thus B1 or D6 is 7. Cell B6 is a peer of B1 (row B) and of D6 (column 6).
+1. Nella colonna 1, solo B1 e F1 possono contenere il 7. È il primo legame forte.
+2. F1 e F5 sono nella riga F. È il legame debole.
+3. Nel riquadro 5, solo F5 e D6 possono contenere il 7. È l'altro legame forte.
+4. F1 e F5 non possono contenere il 7 entrambe.
+5. Se F1 non è 7, allora B1 è 7. Se F5 non è 7, allora D6 è 7.
+6. Quindi B1 o D6 è 7. La cella B6 vede B1 (riga B) e D6 (colonna 6).
 
-**Result:** remove 7 from B6.
+**Risultato:** togli il 7 da B6.
 
-Other name: Turbo Fish (in some apps).
+Altro nome: Turbo Fish (in alcune app).
 
 ---
 
 ## 17. Empty Rectangle
 
-**Strategy:** in a box, all the candidates of a digit are in one row and one column of the box.
-A strong link on the same digit has one end in that row, but not in the box.
-Find the other end of the strong link.
-Remove the digit from the cell that is in the row of this end and in the column of the box.
+*Rettangolo vuoto*
 
-The four corner cells of the box have no candidate for the digit. Thus the name is "Empty Rectangle".
+**Strategia:** in un riquadro, tutti i candidati di una cifra stanno in una riga e in una colonna del riquadro.
+Un legame forte sulla stessa cifra ha un'estremità in quella riga, ma fuori dal riquadro.
+Trova l'altra estremità del legame forte.
+Togli la cifra dalla cella che sta nella riga di questa estremità e nella colonna del riquadro.
+
+Le quattro celle d'angolo del riquadro non hanno candidati per la cifra: da qui il nome "rettangolo vuoto".
 
 <p align="center">
-  <img src="figures/empty_rectangle.svg" width="870" alt="Empty Rectangle on digit 8 in box 5 with a strong link in column 8">
+  <img src="figures/empty_rectangle.svg" width="870" alt="Empty Rectangle sulla cifra 8 nel riquadro 5 con un legame forte nella colonna 8">
 </p>
 
-**Example (digit 8):**
+**Esempio (cifra 8):**
 
-1. In box 5, the 8 is possible only in row E (E4, E6) and in column 5 (D5, F5).
-2. Box 5 must contain an 8. The 8 is in row E or in column 5.
-3. In column 8, only B8 and E8 can contain 8. This is a strong link.
-4. Condition 1: B8 is 8. Then B5 is not 8, because B5 is in row B.
-5. Condition 2: E8 is 8. Then E4 and E6 are not 8. The 8 of box 5 is in D5 or F5, in column 5. Then B5 is not 8.
-6. In the two conditions, B5 is not 8.
+1. Nel riquadro 5, l'8 è possibile solo nella riga E (E4, E6) e nella colonna 5 (D5, F5).
+2. Il riquadro 5 deve contenere un 8: sta nella riga E o nella colonna 5.
+3. Nella colonna 8, solo B8 e E8 possono contenere l'8. È un legame forte.
+4. Caso 1: B8 è 8. Allora B5 non è 8, perché B5 è nella riga B.
+5. Caso 2: E8 è 8. Allora E4 e E6 non sono 8. L'8 del riquadro 5 sta in D5 o F5, nella colonna 5. Allora B5 non è 8.
+6. In entrambi i casi, B5 non è 8.
 
-**Result:** remove 8 from B5.
+**Risultato:** togli l'8 da B5.
 
 ---
 
-<p align="center"><img src="figures/level6.svg" width="900" alt="Level 6: Wings"></p>
+<p align="center"><img src="figures/level6_it.svg" width="900" alt="Livello 6: Wing"></p>
 
-A wing has a pivot cell and two or more pincer cells.
-Each pincer is a peer of the pivot.
-All the possible digits of the pivot make the same digit Z correct in one cell of the wing.
-A cell that is a peer of all the Z candidates of the wing cannot contain Z.
+Un wing ("ala") ha una cella perno e due o più celle pinza.
+Ogni pinza vede il perno.
+Qualunque cifra prenda il perno, la stessa cifra Z diventa corretta in una cella del wing.
+Una cella che vede tutti i candidati Z del wing non può contenere Z.
 
 ## 18. XY-Wing
 
-**Strategy:** a pivot has the candidates X and Y. One pincer has X and Z. The other pincer has Y and Z.
-Remove Z from the cells that are peers of the two pincers.
+**Strategia:** il perno ha i candidati X e Y. Una pinza ha X e Z. L'altra pinza ha Y e Z.
+Togli Z dalle celle che vedono entrambe le pinze.
 
 <p align="center">
-  <img src="figures/xy_wing.svg" width="510" alt="XY-Wing with pivot E5 and pincers E1 and H5">
+  <img src="figures/xy_wing.svg" width="510" alt="XY-Wing con perno E5 e pinze E1 e H5">
 </p>
 
-**Example (X = 2, Y = 7, Z = 9):**
+**Esempio (X = 2, Y = 7, Z = 9):**
 
-1. The pivot E5 has the candidates 2 and 7.
-2. The pincer E1 has 2 and 9. E1 is a peer of E5 (row E).
-3. The pincer H5 has 7 and 9. H5 is a peer of E5 (column 5).
-4. If E5 is 2, then E1 is not 2. Thus E1 is 9.
-5. If E5 is 7, then H5 is not 7. Thus H5 is 9.
-6. Thus E1 or H5 is 9. Cell H1 is a peer of E1 (column 1) and of H5 (row H).
+1. Il perno E5 ha i candidati 2 e 7.
+2. La pinza E1 ha 2 e 9. E1 vede E5 (riga E).
+3. La pinza H5 ha 7 e 9. H5 vede E5 (colonna 5).
+4. Se E5 è 2, allora E1 non è 2. Quindi E1 è 9.
+5. Se E5 è 7, allora H5 non è 7. Quindi H5 è 9.
+6. Quindi E1 o H5 è 9. La cella H1 vede E1 (colonna 1) e H5 (riga H).
 
-**Result:** remove 9 from H1.
+**Risultato:** togli il 9 da H1.
 
-Other name: Y-Wing (in many Sudoku guides).
+Altro nome: Y-Wing (in molti manuali).
 
 ---
 
 ## 19. XYZ-Wing
 
-**Strategy:** a pivot has the candidates X, Y and Z. One pincer has X and Z. The other pincer has Y and Z.
-Remove Z from the cells that are peers of the pivot and of the two pincers.
+**Strategia:** il perno ha i candidati X, Y e Z. Una pinza ha X e Z. L'altra pinza ha Y e Z.
+Togli Z dalle celle che vedono il perno e le due pinze.
 
 <p align="center">
-  <img src="figures/xyz_wing.svg" width="510" alt="XYZ-Wing with pivot E5 and pincers E2 and F6">
+  <img src="figures/xyz_wing.svg" width="510" alt="XYZ-Wing con perno E5 e pinze E2 e F6">
 </p>
 
-**Example (Z = 3):**
+**Esempio (Z = 3):**
 
-1. The pivot E5 has the candidates 1, 2 and 3.
-2. The pincer E2 has 1 and 3 (row E). The pincer F6 has 2 and 3 (box 5).
-3. If E5 is 1, then E2 is 3.
-4. If E5 is 2, then F6 is 3.
-5. If E5 is 3, then the pivot is 3.
-6. Thus one of the three cells contains 3.
-7. Cells E4 and E6 are peers of the three cells.
+1. Il perno E5 ha i candidati 1, 2 e 3.
+2. La pinza E2 ha 1 e 3 (riga E). La pinza F6 ha 2 e 3 (riquadro 5).
+3. Se E5 è 1, allora E2 è 3.
+4. Se E5 è 2, allora F6 è 3.
+5. Se E5 è 3, il 3 sta nel perno.
+6. Quindi una delle tre celle contiene il 3.
+7. Le celle E4 ed E6 vedono tutte e tre le celle.
 
-**Result:** remove 3 from E4 and from E6.
+**Risultato:** togli il 3 da E4 e da E6.
 
 > [!IMPORTANT]
-> The pivot also has Z. Thus the cell for the result must be a peer of the pivot too.
+> Anche il perno ha Z. Per questo la cella da cui togli Z deve vedere anche il perno.
 
 ---
 
 ## 20. WXYZ-Wing
 
-**Strategy:** four cells have together only four digits.
-For three of the digits, all their candidates in the four cells are peers of each other.
-Remove the other digit Z from the cells that are peers of all the Z candidates in the four cells.
+**Strategia:** quattro celle hanno, tutte insieme, solo quattro cifre.
+Per tre di queste cifre, tutti i candidati nelle quattro celle si vedono tra loro.
+Togli la quarta cifra Z dalle celle che vedono tutti i candidati Z delle quattro celle.
 
 <p align="center">
-  <img src="figures/wxyz_wing.svg" width="870" alt="WXYZ-Wing with cells E1, E5, E8 and D6">
+  <img src="figures/wxyz_wing.svg" width="870" alt="WXYZ-Wing con le celle E1, E5, E8 e D6">
 </p>
 
-**Example (Z = 4):**
+**Esempio (Z = 4):**
 
-1. The pivot E5 has 1, 2, 3 and 4. The pincers are E1 (1 and 4), E8 (2 and 4) and D6 (3 and 4).
-2. The digit 1 is in E1 and E5. These cells are peers (row E).
-3. The digit 2 is in E5 and E8. These cells are peers (row E).
-4. The digit 3 is in E5 and D6. These cells are peers (box 5).
-5. Thus the digits 1, 2 and 3 can each be in only one of the four cells.
-6. Four cells must contain four digits. The digits 1, 2 and 3 can fill only three cells.
-7. Thus one or more of the four cells contains 4.
-8. Cells E4 and E6 are peers of E1, E5, E8 and D6.
+1. Il perno E5 ha 1, 2, 3 e 4. Le pinze sono E1 (1 e 4), E8 (2 e 4) e D6 (3 e 4).
+2. L'1 sta in E1 ed E5, che si vedono (riga E).
+3. Il 2 sta in E5 ed E8, che si vedono (riga E).
+4. Il 3 sta in E5 e D6, che si vedono (riquadro 5).
+5. Quindi l'1, il 2 e il 3 possono stare ciascuno in una sola delle quattro celle.
+6. Quattro celle devono contenere quattro cifre. L'1, il 2 e il 3 riempiono al massimo tre celle.
+7. Quindi almeno una delle quattro celle contiene il 4.
+8. Le celle E4 ed E6 vedono E1, E5, E8 e D6.
 
-**Result:** remove 4 from E4 and from E6.
+**Risultato:** togli il 4 da E4 e da E6.
 
 ---
 
 ## 21. W-Wing
 
-**Strategy:** two bivalue cells have the same two candidates X and Z. The two cells are not peers.
-A strong link on X connects a peer of one cell to a peer of the other cell.
-Remove Z from the cells that are peers of the two bivalue cells.
+**Strategia:** due celle bivalore hanno gli stessi due candidati X e Z, e non si vedono.
+Un legame forte su X collega una cella che vede la prima a una cella che vede la seconda.
+Togli Z dalle celle che vedono entrambe le celle bivalore.
 
 <p align="center">
-  <img src="figures/w_wing.svg" width="870" alt="W-Wing with cells A2 and B5 and a strong link on 1 in row C">
+  <img src="figures/w_wing.svg" width="870" alt="W-Wing con le celle A2 e B5 e un legame forte sull'1 nella riga C">
 </p>
 
-**Example (X = 1, Z = 5):**
+**Esempio (X = 1, Z = 5):**
 
-1. Cells A2 and B5 have the candidates 1 and 5.
-2. In row C, only C2 and C5 can contain 1. This is a strong link.
-3. C2 is a peer of A2 (column 2). C5 is a peer of B5 (column 5).
-4. If A2 is not 5, then A2 is 1. Then C2 is not 1.
-5. Then C5 is 1, and B5 is not 1. Then B5 is 5.
-6. Thus A2 or B5 is 5. Cell B3 is a peer of A2 (box 1) and of B5 (row B).
+1. Le celle A2 e B5 hanno i candidati 1 e 5.
+2. Nella riga C, solo C2 e C5 possono contenere l'1. È un legame forte.
+3. C2 vede A2 (colonna 2). C5 vede B5 (colonna 5).
+4. Se A2 non è 5, allora A2 è 1. Allora C2 non è 1.
+5. Allora C5 è 1, e B5 non è 1. Allora B5 è 5.
+6. Quindi A2 o B5 è 5. La cella B3 vede A2 (riquadro 1) e B5 (riga B).
 
-**Result:** remove 5 from B3.
+**Risultato:** togli il 5 da B3.
 
 > [!NOTE]
-> Some apps use the name "Y-Wing" for this pattern. Other Sudoku guides use the name "Y-Wing" for the XY-Wing.
+> Alcune app chiamano "Y-Wing" questo schema. Molti manuali chiamano "Y-Wing" l'XY-Wing.
 
 ---
 
-<p align="center"><img src="figures/level7.svg" width="900" alt="Level 7: Chains"></p>
+<p align="center"><img src="figures/level7_it.svg" width="900" alt="Livello 7: Catene"></p>
 
 ## 22. XY-Chain
 
-**Strategy:** a chain of bivalue cells starts with the digit Z and ends with the digit Z.
-Each cell in the chain is a peer of the next cell. The two cells have one digit that is the same.
-Remove Z from the cells that are peers of the two ends.
+*Catena XY*
 
-**Logic:**
-Start at the first cell. Make it "not Z".
-Then the first cell contains its other digit.
-This digit removes a candidate from the next cell.
+**Strategia:** una catena di celle bivalore inizia con la cifra Z e finisce con la cifra Z.
+Ogni cella della catena vede la successiva, e le due celle hanno una cifra in comune.
+Togli Z dalle celle che vedono entrambe le estremità.
 
-Each cell in the chain then has only one digit.
-At the end, the last cell contains Z.
-Thus one of the two ends contains Z.
+**Logica:**
+Parti dalla prima cella e supponi che non sia Z.
+Allora la prima cella contiene l'altra sua cifra.
+Questa cifra toglie un candidato dalla cella successiva.
+
+A catena, ogni cella resta con una sola cifra.
+Alla fine, l'ultima cella contiene Z.
+Quindi una delle due estremità contiene Z.
 
 <p align="center">
-  <img src="figures/xy_chain.svg" width="870" alt="XY-Chain from A1 to D9 on digit 1">
+  <img src="figures/xy_chain.svg" width="870" alt="XY-Chain da A1 a D9 sulla cifra 1">
 </p>
 
-**Example (Z = 1):**
+**Esempio (Z = 1):**
 
-1. The chain is A1 (1, 2) → A5 (2, 3) → D5 (3, 4) → D9 (4, 1).
-2. If A1 is not 1, then A1 is 2.
-3. Then A5 is not 2. Thus A5 is 3.
-4. Then D5 is not 3. Thus D5 is 4.
-5. Then D9 is not 4. Thus D9 is 1.
-6. Thus A1 or D9 is 1.
+1. La catena è A1 (1, 2) → A5 (2, 3) → D5 (3, 4) → D9 (4, 1).
+2. Se A1 non è 1, allora A1 è 2.
+3. Allora A5 non è 2: A5 è 3.
+4. Allora D5 non è 3: D5 è 4.
+5. Allora D9 non è 4: D9 è 1.
+6. Quindi A1 o D9 è 1.
 
-**Result:**
+**Risultato:**
 
-| Cell | Peer of A1 by | Peer of D9 by | Remove |
+| Cella | Vede A1 tramite | Vede D9 tramite | Togli |
 |:-:|---|---|:-:|
-| A9 | row A | column 9 | 1 |
-| D1 | column 1 | row D | 1 |
+| A9 | riga A | colonna 9 | 1 |
+| D1 | colonna 1 | riga D | 1 |
 
 > [!TIP]
-> An XY-Wing is a short XY-Chain with three cells.
+> Un XY-Wing è un XY-Chain corto, di tre celle.
 
 ---
 
-<p align="center"><img src="figures/level8.svg" width="900" alt="Level 8: Uniqueness"></p>
+<p align="center"><img src="figures/level8_it.svg" width="900" alt="Livello 8: Unicità"></p>
 
 ## 23. BUG+1
 
-BUG is the short name of "Bivalue Universal Grave".
+BUG è la sigla di "Bivalue Universal Grave" (tomba universale bivalore).
 
-**BUG grid:** all the empty cells are bivalue cells.
-Also, in each unit, each candidate is in two cells only.
+**Griglia BUG:** tutte le celle vuote sono bivalore, e in ogni unità ogni candidato compare in due celle sole.
 
-**Strategy:** all the empty cells are bivalue cells, but one cell has three candidates.
-In that cell, one digit Z is a candidate three times in its row, its column and its box.
-Write that digit in the cell.
+**Strategia:** tutte le celle vuote sono bivalore, tranne una che ha tre candidati.
+In quella cella, una cifra Z compare tre volte come candidata nella sua riga, nella sua colonna e nel suo riquadro.
+Scrivi Z in quella cella.
 
-**Logic:**
+**Logica:**
 
-1. A BUG grid cannot have only one solution. It has no solution, or it has two or more solutions.
-2. A correct puzzle has only one solution. Thus the puzzle cannot be a BUG grid.
-3. Without the cell with three candidates, the grid is a BUG grid.
-4. If this cell does not contain the digit Z, it has only two candidates. Then the grid is a BUG grid.
-5. Thus the cell must contain the digit Z.
+1. Una griglia BUG non può avere una sola soluzione: ne ha zero, oppure due o più.
+2. Un puzzle corretto ha una sola soluzione. Quindi il puzzle non può essere una griglia BUG.
+3. Senza la cella con tre candidati, la griglia sarebbe una griglia BUG.
+4. Se questa cella non contiene Z, le restano due candidati e la griglia diventa una griglia BUG.
+5. Quindi la cella deve contenere Z.
 
 <p align="center">
-  <img src="figures/bug_plus_one.svg" width="870" alt="BUG+1: cell B6 has the candidates 1, 5 and 9">
+  <img src="figures/bug_plus_one.svg" width="870" alt="BUG+1: la cella B6 ha i candidati 1, 5 e 9">
 </p>
 
-**Example:**
+**Esempio:**
 
-1. All the empty cells have two candidates, but cell B6 has three: 1, 5 and 9.
-2. In row B, the digit 1 is a candidate in B1, B4 and B6: three times.
-3. In column 6, the digit 1 is a candidate in A6, B6 and H6: three times.
-4. In box 2, the digit 1 is a candidate in A6, B4 and B6: three times.
-5. Thus Z is 1.
+1. Tutte le celle vuote hanno due candidati, tranne B6 che ne ha tre: 1, 5 e 9.
+2. Nella riga B, l'1 è candidato in B1, B4 e B6: tre volte.
+3. Nella colonna 6, l'1 è candidato in A6, B6 e H6: tre volte.
+4. Nel riquadro 2, l'1 è candidato in A6, B4 e B6: tre volte.
+5. Quindi Z è 1.
 
-**Result:** write 1 in B6. Then the puzzle has only naked singles and hidden singles.
+**Risultato:** scrivi 1 in B6. Da qui il puzzle si risolve con Naked Single e Hidden Single.
 
 > [!WARNING]
-> Use BUG+1 only on a puzzle that has only one solution.
-> On a puzzle with two or more solutions, BUG+1 can give an incorrect result.
+> Usa il BUG+1 solo su un puzzle con una sola soluzione.
+> Su un puzzle con due o più soluzioni, il BUG+1 può dare un risultato sbagliato.
 
 ---
 
-## Procedure for all puzzles
+## Procedura generale
 
-<p align="center"><img src="figures/map.svg" width="900" alt="Map of the 23 strategies in 8 levels"></p>
+<p align="center"><img src="figures/map_it.svg" width="900" alt="Mappa delle 23 strategie in 8 livelli"></p>
 
-1. Write all the candidates in all the empty cells.
-2. Find all the naked singles and hidden singles (level 1).
-3. After each new digit, remove that digit from the candidates of its peers.
-4. If level 1 gives no result, use the strategies of level 2.
-5. When a strategy gives a result, go back to level 1.
-6. If a level gives no result, go to the next level.
-7. Continue until the grid is full.
+1. Scrivi tutti i candidati in tutte le celle vuote.
+2. Cerca tutti i Naked Single e gli Hidden Single (livello 1).
+3. Dopo ogni nuova cifra, toglila dai candidati delle celle che la vedono.
+4. Se il livello 1 non dà risultati, usa le strategie del livello 2.
+5. Quando una strategia dà un risultato, torna al livello 1.
+6. Se un livello non dà risultati, passa al livello successivo.
+7. Continua finché la griglia è completa.
 
 > [!CAUTION]
-> Do not write a digit in a cell when you are not sure.
-> One incorrect digit can make the full grid incorrect.
+> Non scrivere una cifra in una cella se non sei sicuro.
+> Una sola cifra sbagliata può rendere sbagliata tutta la griglia.
 
 ---
 
-## About the examples
+## Gli esempi
 
-- The folder `figures/` contains all the figures of this guide as SVG files.
-- The script `tools/build_figures.py` makes all the figures.
-- The same script examines each example. It finds all the possible sets of digits for the cells in the figure. Then it makes sure that each removed candidate is not correct in each set.
-- The BUG+1 grid is a full and correct grid. The script makes sure that it has only one solution, and that B6 without the 1 gives no solution.
+- La cartella `figures/` contiene tutte le figure della guida in formato SVG.
+- Lo script `tools/build_figures.py` genera tutte le figure, in inglese e in italiano.
+- Lo stesso script verifica ogni esempio. Trova tutte le combinazioni di cifre possibili per le celle della figura, poi controlla che nessun candidato tolto sia corretto in alcuna combinazione.
+- La griglia del BUG+1 è una griglia completa e corretta. Lo script controlla che abbia una sola soluzione, e che B6 senza l'1 non abbia soluzioni.
+- Lo script `tools/ste_lint.py` controlla le regole di ASD-STE100 sulla versione inglese.
 
-To make the figures again, use this command in the folder of this guide:
+Per rigenerare le figure, esegui questo comando nella cartella della guida:
 
 ```bash
 python3 tools/build_figures.py

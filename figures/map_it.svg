@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" width="900" height="430" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif">
+<rect width="900" height="430" rx="18" fill="#FFFFFF"/>
+<rect x="18" y="20" width="186" height="38" rx="19" fill="#16A34A"/>
+<text x="111" y="45" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Livello 1: Singoli</text>
+<rect x="214" y="23" width="108" height="32" rx="16" fill="#4ADE80" fill-opacity="0.22" stroke="#16A34A" stroke-width="1.5"/>
+<text x="268" y="44" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Naked Single</text>
+<rect x="329.6" y="23" width="115" height="32" rx="16" fill="#4ADE80" fill-opacity="0.22" stroke="#16A34A" stroke-width="1.5"/>
+<text x="387" y="44" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Hidden Single</text>
+<rect x="18" y="70" width="186" height="38" rx="19" fill="#0891B2"/>
+<text x="111" y="95" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Livello 2: Sottoinsiemi</text>
+<rect x="214" y="73" width="93" height="32" rx="16" fill="#22D3EE" fill-opacity="0.22" stroke="#0891B2" stroke-width="1.5"/>
+<text x="260" y="94" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Naked Pair</text>
+<rect x="315.0" y="73" width="100" height="32" rx="16" fill="#22D3EE" fill-opacity="0.22" stroke="#0891B2" stroke-width="1.5"/>
+<text x="365" y="94" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Hidden Pair</text>
+<rect x="423.3" y="73" width="108" height="32" rx="16" fill="#22D3EE" fill-opacity="0.22" stroke="#0891B2" stroke-width="1.5"/>
+<text x="477" y="94" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Naked Triple</text>
+<rect x="538.9" y="73" width="115" height="32" rx="16" fill="#22D3EE" fill-opacity="0.22" stroke="#0891B2" stroke-width="1.5"/>
+<text x="596" y="94" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Hidden Triple</text>
+<rect x="661.8" y="73" width="93" height="32" rx="16" fill="#22D3EE" fill-opacity="0.22" stroke="#0891B2" stroke-width="1.5"/>
+<text x="708" y="94" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Naked Quad</text>
+<rect x="762.8" y="73" width="100" height="32" rx="16" fill="#22D3EE" fill-opacity="0.22" stroke="#0891B2" stroke-width="1.5"/>
+<text x="813" y="94" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Hidden Quad</text>
+<rect x="18" y="120" width="186" height="38" rx="19" fill="#2563EB"/>
+<text x="111" y="145" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Livello 3: Intersezioni</text>
+<rect x="214" y="123" width="78" height="32" rx="16" fill="#60A5FA" fill-opacity="0.22" stroke="#2563EB" stroke-width="1.5"/>
+<text x="253" y="144" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Pointing</text>
+<rect x="300.4" y="123" width="78" height="32" rx="16" fill="#60A5FA" fill-opacity="0.22" stroke="#2563EB" stroke-width="1.5"/>
+<text x="340" y="144" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Claiming</text>
+<rect x="18" y="170" width="186" height="38" rx="19" fill="#4F46E5"/>
+<text x="111" y="195" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Livello 4: Fish</text>
+<rect x="214" y="173" width="64" height="32" rx="16" fill="#818CF8" fill-opacity="0.22" stroke="#4F46E5" stroke-width="1.5"/>
+<text x="246" y="194" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">X-Wing</text>
+<rect x="285.8" y="173" width="86" height="32" rx="16" fill="#818CF8" fill-opacity="0.22" stroke="#4F46E5" stroke-width="1.5"/>
+<text x="329" y="194" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Swordfish</text>
+<rect x="379.5" y="173" width="86" height="32" rx="16" fill="#818CF8" fill-opacity="0.22" stroke="#4F46E5" stroke-width="1.5"/>
+<text x="422" y="194" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Jellyfish</text>
+<rect x="18" y="220" width="186" height="38" rx="19" fill="#9333EA"/>
+<text x="111" y="245" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Livello 5: Una cifra</text>
+<rect x="214" y="223" width="93" height="32" rx="16" fill="#C084FC" fill-opacity="0.22" stroke="#9333EA" stroke-width="1.5"/>
+<text x="260" y="244" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Skyscraper</text>
+<rect x="315.0" y="223" width="115" height="32" rx="16" fill="#C084FC" fill-opacity="0.22" stroke="#9333EA" stroke-width="1.5"/>
+<text x="372" y="244" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">2-String Kite</text>
+<rect x="437.9" y="223" width="100" height="32" rx="16" fill="#C084FC" fill-opacity="0.22" stroke="#9333EA" stroke-width="1.5"/>
+<text x="488" y="244" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Turbot Fish</text>
+<rect x="546.1999999999999" y="223" width="130" height="32" rx="16" fill="#C084FC" fill-opacity="0.22" stroke="#9333EA" stroke-width="1.5"/>
+<text x="611" y="244" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">Empty Rectangle</text>
+<rect x="18" y="270" width="186" height="38" rx="19" fill="#DB2777"/>
+<text x="111" y="295" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Livello 6: Wing</text>
+<rect x="214" y="273" width="71" height="32" rx="16" fill="#F472B6" fill-opacity="0.22" stroke="#DB2777" stroke-width="1.5"/>
+<text x="250" y="294" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">XY-Wing</text>
+<rect x="293.1" y="273" width="78" height="32" rx="16" fill="#F472B6" fill-opacity="0.22" stroke="#DB2777" stroke-width="1.5"/>
+<text x="332" y="294" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">XYZ-Wing</text>
+<rect x="379.5" y="273" width="86" height="32" rx="16" fill="#F472B6" fill-opacity="0.22" stroke="#DB2777" stroke-width="1.5"/>
+<text x="422" y="294" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">WXYZ-Wing</text>
+<rect x="473.2" y="273" width="64" height="32" rx="16" fill="#F472B6" fill-opacity="0.22" stroke="#DB2777" stroke-width="1.5"/>
+<text x="505" y="294" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">W-Wing</text>
+<rect x="18" y="320" width="186" height="38" rx="19" fill="#EA580C"/>
+<text x="111" y="345" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Livello 7: Catene</text>
+<rect x="214" y="323" width="78" height="32" rx="16" fill="#FB923C" fill-opacity="0.22" stroke="#EA580C" stroke-width="1.5"/>
+<text x="253" y="344" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">XY-Chain</text>
+<rect x="18" y="370" width="186" height="38" rx="19" fill="#DC2626"/>
+<text x="111" y="395" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Livello 8: Unicità</text>
+<rect x="214" y="373" width="56" height="32" rx="16" fill="#F87171" fill-opacity="0.22" stroke="#DC2626" stroke-width="1.5"/>
+<text x="242" y="394" text-anchor="middle" font-size="13" font-weight="600" fill="#1F2937">BUG+1</text>
+</svg>

@@ -1,4 +1,4 @@
-"""Mechanical checks of ASD-STE100 writing rules on README.md.
+"""Mechanical checks of ASD-STE100 writing rules on README.en.md (the English guide).
 
 Checks:
   * procedural sentence (numbered step) > 20 words
@@ -28,7 +28,7 @@ import sys
 from collections import Counter
 from pathlib import Path
 
-DOC = Path(__file__).resolve().parent.parent / "README.md"
+DOC = Path(__file__).resolve().parent.parent / "README.en.md"
 
 TECH_ING = {"pointing", "claiming", "string", "wing", "y-wing", "xy-wing", "xyz-wing", "wxyz-wing", "w-wing"}
 UNAPPROVED = {

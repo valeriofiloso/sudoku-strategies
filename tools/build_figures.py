@@ -1,4 +1,4 @@
-"""Build every SVG figure of the guide and prove every example.
+"""Build every SVG figure of the guide (English and Italian) and prove every example.
 
 Usage (from the guide folder):
     python3 tools/build_figures.py
@@ -221,8 +221,46 @@ def grid_svg(ex: dict) -> str:
     return "\n".join(o)
 
 
-def banner_svg(i: int) -> str:
-    lvl, title, c1, c2 = LEVELS[i]
+TXT = {
+    "en": dict(
+        level="Level",
+        levels=["Singles", "Subsets", "Intersections", "Fish", "Single-digit chains",
+                "Wings", "Chains", "Uniqueness"],
+        cover_title=("Sudoku", "Strategies"),
+        cover_sub="23 strategies, 8 levels, one logic: remove the candidates that cannot be correct.",
+        cover_foot="WRITTEN IN ASD-STE100 SIMPLIFIED TECHNICAL ENGLISH",
+        fills=["Result cell", "Pattern cell", "Pivot cell", "Chain cell", "Blocked cell"],
+        marks=["Pattern digit", "Other pattern digit", "Remove this candidate", "Correct digit"],
+        lines=["Strong link", "Weak link", "Unit of the pattern", "Base unit"],
+        anatomy=["row C", "col 7", "box 5"],
+        map_short=["Singles", "Subsets", "Intersections", "Fish", "Single-digit",
+                   "Wings", "Chains", "Uniqueness"],
+        suffix="",
+    ),
+    "it": dict(
+        level="Livello",
+        levels=["Singoli", "Sottoinsiemi", "Intersezioni", "Fish", "Catene su una cifra",
+                "Wing", "Catene", "Unicità"],
+        cover_title=("Strategie", "del Sudoku"),
+        cover_sub="23 strategie, 8 livelli, una sola logica: togli i candidati impossibili.",
+        cover_foot="VERSIONE ITALIANA · ORIGINALE IN ASD-STE100",
+        fills=["Cella del risultato", "Cella dello schema", "Cella perno", "Cella della catena",
+               "Cella esclusa"],
+        marks=["Cifra dello schema", "Altra cifra dello schema", "Candidato da togliere",
+               "Cifra corretta"],
+        lines=["Legame forte", "Legame debole", "Unità dello schema", "Unità di base"],
+        anatomy=["riga C", "col. 7", "riquadro 5"],
+        map_short=["Singoli", "Sottoinsiemi", "Intersezioni", "Fish", "Una cifra",
+                   "Wing", "Catene", "Unicità"],
+        suffix="_it",
+    ),
+}
+
+
+def banner_svg(i: int, lang: str) -> str:
+    T = TXT[lang]
+    _lvl, _title, c1, c2 = LEVELS[i]
+    lvl, title = f"{T['level']} {i + 1}", T["levels"][i]
     W, H = 900, 96
     dots = "".join(
         f'<circle cx="{W - 250 + k * 28}" cy="{H / 2}" r="9" '
@@ -234,12 +272,13 @@ def banner_svg(i: int) -> str:
             f'<stop offset="1" stop-color="{c2}"/></linearGradient></defs>'
             f'<rect width="{W}" height="{H}" rx="18" fill="url(#g)"/>'
             f'<text x="32" y="40" font-size="17" font-weight="600" fill="#FFFFFF" '
-            f'fill-opacity="0.85" letter-spacing="2">{lvl.upper()}</text>'
+            f'fill-opacity="0.85" letter-spacing="2">{escape(lvl.upper())}</text>'
             f'<text x="32" y="74" font-size="30" font-weight="800" fill="#FFFFFF">{escape(title)}</text>'
             f'{dots}</svg>')
 
 
-def cover_svg() -> str:
+def cover_svg(lang: str) -> str:
+    T = TXT[lang]
     W, H = 900, 260
     o = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" '
          f'height="{H}" font-family="{FONT}">',
@@ -247,7 +286,6 @@ def cover_svg() -> str:
          '<stop offset="0" stop-color="#0F172A"/><stop offset="1" stop-color="#312E81"/>'
          '</linearGradient></defs>',
          f'<rect width="{W}" height="{H}" rx="22" fill="url(#g)"/>']
-    # rainbow mini grid
     cols = [lv[3] for lv in LEVELS] + ["#FACC15"]
     digits = [5, 3, 0, 0, 7, 0, 0, 0, 0, 6, 0, 0, 1, 9, 5, 0, 0, 0, 0, 9, 8, 0, 0, 0, 0, 6, 0,
               8, 0, 0, 0, 6, 0, 0, 0, 3, 4, 0, 0, 8, 0, 3, 0, 0, 1, 7, 0, 0, 0, 2, 0, 0, 0, 6,
@@ -261,12 +299,12 @@ def cover_svg() -> str:
         if digits[k]:
             o.append(f'<text x="{gx + c * cs + cs / 2 - 1:.1f}" y="{gy + r * cs + cs / 2 + 4:.1f}" '
                      f'text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">{digits[k]}</text>')
-    o.append('<text x="40" y="96" font-size="50" font-weight="800" fill="#FFFFFF">Sudoku</text>')
-    o.append('<text x="40" y="150" font-size="50" font-weight="800" fill="#FDE68A">Strategies</text>')
-    o.append('<text x="42" y="196" font-size="17" fill="#C7D2FE">23 strategies, 8 levels, '
-             'one logic: remove the candidates that cannot be correct.</text>')
-    o.append('<text x="42" y="228" font-size="14" fill="#A5B4FC" letter-spacing="1.5">'
-             'WRITTEN IN ASD-STE100 SIMPLIFIED TECHNICAL ENGLISH</text>')
+    t1, t2 = T["cover_title"]
+    o.append(f'<text x="40" y="96" font-size="50" font-weight="800" fill="#FFFFFF">{escape(t1)}</text>')
+    o.append(f'<text x="40" y="150" font-size="50" font-weight="800" fill="#FDE68A">{escape(t2)}</text>')
+    o.append(f'<text x="42" y="196" font-size="17" fill="#C7D2FE">{escape(T["cover_sub"])}</text>')
+    o.append(f'<text x="42" y="228" font-size="14" fill="#A5B4FC" letter-spacing="1.5">'
+             f'{escape(T["cover_foot"])}</text>')
     o.append("</svg>")
     return "\n".join(o)
 
@@ -283,19 +321,21 @@ MAP = [
 ]
 
 
-def map_svg() -> str:
+def map_svg(lang: str) -> str:
+    T = TXT[lang]
     W, rowh = 900, 50
     H = 20 + rowh * len(MAP) + 10
     o = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" '
          f'height="{H}" font-family="{FONT}">',
          f'<rect width="{W}" height="{H}" rx="18" fill="#FFFFFF"/>']
     for i, names in enumerate(MAP):
-        lvl, title, c1, c2 = LEVELS[i]
+        _l, _t, c1, c2 = LEVELS[i]
         y = 20 + i * rowh
-        o.append(f'<rect x="18" y="{y}" width="170" height="38" rx="19" fill="{c1}"/>')
-        o.append(f'<text x="103" y="{y + 25}" text-anchor="middle" font-size="14" '
-                 f'font-weight="700" fill="#FFFFFF">{lvl}: {escape(title.split()[0])}</text>')
-        x = 200
+        o.append(f'<rect x="18" y="{y}" width="186" height="38" rx="19" fill="{c1}"/>')
+        o.append(f'<text x="111" y="{y + 25}" text-anchor="middle" font-size="14" '
+                 f'font-weight="700" fill="#FFFFFF">{T["level"]} {i + 1}: '
+                 f'{escape(T["map_short"][i])}</text>')
+        x = 214
         for n in names:
             w = 20 + 7.3 * len(n)
             o.append(f'<rect x="{x}" y="{y + 3}" width="{w:.0f}" height="32" rx="16" '
@@ -307,37 +347,34 @@ def map_svg() -> str:
     return "\n".join(o)
 
 
-def legend_svg() -> str:
-    items_fill = [("focus", "Result cell"), ("pattern", "Pattern cell"),
-                  ("pivot", "Pivot cell"), ("chain", "Chain cell"), ("blocked", "Blocked cell")]
-    items_mark = [("key", "Pattern digit"), ("key2", "Other pattern digit"),
-                  ("remove", "Remove this candidate"), ("place", "Correct digit")]
+def legend_svg(lang: str) -> str:
+    T = TXT[lang]
     W, H = 900, 150
     o = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" '
          f'height="{H}" font-family="{FONT}">',
          f'<rect width="{W}" height="{H}" rx="16" fill="#FFFFFF" stroke="#E5E7EB"/>']
-    x = 22
-    for role, label in items_fill:
-        o.append(f'<rect x="{x}" y="18" width="28" height="28" rx="5" fill="{FILL[role]}" stroke="#9CA3AF"/>')
-        o.append(f'<text x="{x + 36}" y="38" font-size="14" fill="#1F2937">{label}</text>')
-        x += 36 + 8 * len(label) + 30
-    x = 22
-    for role, label in items_mark:
-        o.append(f'<circle cx="{x + 14}" cy="78" r="11" fill="{MARK[role]}"/>')
-        o.append(f'<text x="{x + 14}" y="83" text-anchor="middle" font-size="13" '
+    # fixed columns: the layout fits both languages
+    for k, (role, label) in enumerate(zip(["focus", "pattern", "pivot", "chain", "blocked"], T["fills"])):
+        x = 22 + k * 176
+        o.append(f'<rect x="{x}" y="18" width="26" height="26" rx="5" fill="{FILL[role]}" stroke="#9CA3AF"/>')
+        o.append(f'<text x="{x + 33}" y="36" font-size="13" fill="#1F2937">{escape(label)}</text>')
+    for k, (role, label) in enumerate(zip(["key", "key2", "remove", "place"], T["marks"])):
+        x = 22 + k * 220
+        o.append(f'<circle cx="{x + 13}" cy="78" r="11" fill="{MARK[role]}"/>')
+        o.append(f'<text x="{x + 13}" y="83" text-anchor="middle" font-size="13" '
                  f'font-weight="700" fill="#FFFFFF">7</text>')
-        o.append(f'<text x="{x + 34}" y="83" font-size="14" fill="#1F2937">{label}</text>')
-        x += 34 + 8 * len(label) + 34
+        o.append(f'<text x="{x + 33}" y="83" font-size="13" fill="#1F2937">{escape(label)}</text>')
     y = 122
-    o.append(f'<line x1="22" y1="{y}" x2="82" y2="{y}" stroke="{LINK}" stroke-width="3"/>')
-    o.append(f'<text x="92" y="{y + 5}" font-size="14" fill="#1F2937">Strong link</text>')
-    o.append(f'<line x1="220" y1="{y}" x2="280" y2="{y}" stroke="{LINK}" stroke-width="3" stroke-dasharray="7 6"/>')
-    o.append(f'<text x="290" y="{y + 5}" font-size="14" fill="#1F2937">Weak link</text>')
-    o.append(f'<rect x="410" y="{y - 13}" width="60" height="26" rx="6" fill="none" '
+    l1, l2, l3, l4 = T["lines"]
+    o.append(f'<line x1="22" y1="{y}" x2="72" y2="{y}" stroke="{LINK}" stroke-width="3"/>')
+    o.append(f'<text x="82" y="{y + 5}" font-size="13" fill="#1F2937">{escape(l1)}</text>')
+    o.append(f'<line x1="242" y1="{y}" x2="292" y2="{y}" stroke="{LINK}" stroke-width="3" stroke-dasharray="7 6"/>')
+    o.append(f'<text x="302" y="{y + 5}" font-size="13" fill="#1F2937">{escape(l2)}</text>')
+    o.append(f'<rect x="462" y="{y - 13}" width="50" height="26" rx="6" fill="none" '
              f'stroke="{OUTLINE}" stroke-width="3"/>')
-    o.append(f'<text x="480" y="{y + 5}" font-size="14" fill="#1F2937">Unit of the pattern</text>')
-    o.append(f'<rect x="650" y="{y - 13}" width="26" height="26" rx="4" fill="{TINT}" stroke="#9CA3AF"/>')
-    o.append(f'<text x="686" y="{y + 5}" font-size="14" fill="#1F2937">Base unit</text>')
+    o.append(f'<text x="522" y="{y + 5}" font-size="13" fill="#1F2937">{escape(l3)}</text>')
+    o.append(f'<rect x="682" y="{y - 13}" width="26" height="26" rx="4" fill="{TINT}" stroke="#9CA3AF"/>')
+    o.append(f'<text x="716" y="{y + 5}" font-size="13" fill="#1F2937">{escape(l4)}</text>')
     o.append("</svg>")
     return "\n".join(o)
 
@@ -352,29 +389,37 @@ ANATOMY = dict(
 )
 
 
-def anatomy_svg() -> str:
+def anatomy_svg(lang: str) -> str:
+    a_row, a_col, a_box = TXT[lang]["anatomy"]
     s = grid_svg(ANATOMY)
     extra = (f'<text x="{PAD + 6 * S + S / 2}" y="{PAD + 2 * S + S / 2 + 6}" text-anchor="middle" '
              f'font-size="20" font-weight="700" fill="#92400E">C7</text>'
-             f'<text x="{PAD + 1 * S}" y="{PAD + 2 * S + S / 2 + 6}" text-anchor="middle" '
-             f'font-size="19" font-weight="700" fill="#1D4ED8">row C</text>'
+             f'<text x="{PAD + 1.5 * S}" y="{PAD + 2 * S + S / 2 + 6}" text-anchor="middle" '
+             f'font-size="19" font-weight="700" fill="#1D4ED8">{a_row}</text>'
              f'<text x="{PAD + 6 * S + S / 2}" y="{PAD + 7 * S + S / 2 + 6}" text-anchor="middle" '
-             f'font-size="17" font-weight="700" fill="#1D4ED8">col 7</text>'
+             f'font-size="16" font-weight="700" fill="#1D4ED8">{a_col}</text>'
              f'<text x="{PAD + 4 * S + S / 2}" y="{PAD + 4 * S + S / 2 + 6}" text-anchor="middle" '
-             f'font-size="19" font-weight="700" fill="#6D28D9">box 5</text>')
+             f'font-size="19" font-weight="700" fill="#6D28D9">{a_box}</text>')
     return s.replace("</svg>", extra + "</svg>")
 
 
+READMES = {"README.md": "it", "README.en.md": "en"}
+
+
 def sync_readme_widths() -> None:
-    """Set the display width of each grid figure in README.md, so that all
-    grids show at the same scale (DISPLAY_CELL px per cell)."""
+    """Set the display width of each grid figure in the README files, so that
+    all grids show at the same scale (DISPLAY_CELL px per cell)."""
     import re
-    readme = OUT.parent / "README.md"
-    text = readme.read_text(encoding="utf-8")
-    for ex in EX + [ANATOMY]:
-        pat = re.compile(rf'(src="figures/{ex["id"]}\.svg" width=")\d+(")')
-        text = pat.sub(rf"\g<1>{display_width(ex)}\g<2>", text)
-    readme.write_text(text, encoding="utf-8")
+    for fname, lang in READMES.items():
+        readme = OUT.parent / fname
+        if not readme.exists():
+            continue
+        text = readme.read_text(encoding="utf-8")
+        for ex in EX + [ANATOMY]:
+            stem = ex["id"] + (TXT[lang]["suffix"] if ex is ANATOMY else "")
+            pat = re.compile(rf'(src="figures/{stem}\.svg" width=")\d+(")')
+            text = pat.sub(rf"\g<1>{display_width(ex)}\g<2>", text)
+        readme.write_text(text, encoding="utf-8")
 
 
 def main() -> None:
@@ -391,16 +436,18 @@ def main() -> None:
     full = solve_all(domains_of(bug), bug["require"], limit=5)
     assert len(full) == 1, "BUG+1: the grid must have one solution only"
     print("bug_plus_one: OK (B6 without 1 -> 0 solutions; full grid -> 1 solution)")
-    # 2. write figures
+    # 2. write figures (grids have no words: one set for all languages)
     for ex in EX:
         (OUT / f"{ex['id']}.svg").write_text(grid_svg(ex), encoding="utf-8")
+    for lang, T in TXT.items():
+        sfx = T["suffix"]
+        for i in range(len(LEVELS)):
+            (OUT / f"level{i + 1}{sfx}.svg").write_text(banner_svg(i, lang), encoding="utf-8")
+        (OUT / f"cover{sfx}.svg").write_text(cover_svg(lang), encoding="utf-8")
+        (OUT / f"map{sfx}.svg").write_text(map_svg(lang), encoding="utf-8")
+        (OUT / f"legend{sfx}.svg").write_text(legend_svg(lang), encoding="utf-8")
+        (OUT / f"anatomy{sfx}.svg").write_text(anatomy_svg(lang), encoding="utf-8")
     sync_readme_widths()
-    for i in range(len(LEVELS)):
-        (OUT / f"level{i + 1}.svg").write_text(banner_svg(i), encoding="utf-8")
-    (OUT / "cover.svg").write_text(cover_svg(), encoding="utf-8")
-    (OUT / "map.svg").write_text(map_svg(), encoding="utf-8")
-    (OUT / "legend.svg").write_text(legend_svg(), encoding="utf-8")
-    (OUT / "anatomy.svg").write_text(anatomy_svg(), encoding="utf-8")
     print(f"wrote {len(list(OUT.glob('*.svg')))} figures to {OUT}")
 
 
